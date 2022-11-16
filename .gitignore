@@ -1,0 +1,5 @@
+**/.DS_Store
+**/*.o
+**/*.e
+**/*.ipynb
+**/__pycache__
