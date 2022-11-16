@@ -9,7 +9,7 @@ Usage:
 	* https://github.com/calico/basenji
 	* Place this repository under ./models/Akita
 	``` 
-	cd ./models/Akita/basenji/manuscripts/akita
+	cd ./models/Akita/basenji-master/manuscripts/akita
 	sh get_model.sh
 	sh get_data.sh
 	```
