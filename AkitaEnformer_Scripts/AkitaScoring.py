@@ -91,7 +91,7 @@ print('successfully loaded')
 
 
 ### names of targets ###
-data_dir =  os.path.join(model_dir,"basenji/manuscripts/akita/data/")
+data_dir =  os.path.join(model_dir,"data")
 
 hic_targets = pd.read_csv(data_dir+'/targets.txt',sep='\t')
 hic_file_dict_num = dict(zip(hic_targets['index'].values, hic_targets['file'].values) )
@@ -297,44 +297,15 @@ for idx, example in enumerate(it):
 
     
     
-    if idx == 0:
-        #save first variant with header to csv
-        max_df = pd.DataFrame(maxed_scores_list)
-        max_df.to_csv(f"{scratch_path}/Akita_max_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",index=False,header=True)
-        maxed_scores_list = []
 
-
-        msd_df = pd.DataFrame(msd_scores_list)
-        msd_df.to_csv(f"{scratch_path}/Akita_msd_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",index=False,header=True)
-        msd_scores_list = []
-
-    elif idx != 0 and idx % 500 == 0:
-        #append scores every 500 (the lists are being appended to in the for loop). Do not add header as row name
-        max_df = pd.DataFrame(maxed_scores_list)
-        max_df.to_csv(f"{scratch_path}/Akita_max_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",mode = 'a',index=False,header=False)
-        maxed_scores_list = []
-
-
-        msd_df = pd.DataFrame(msd_scores_list)
-        msd_df.to_csv(f"{scratch_path}/Akita_msd_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",mode = 'a',index=False,header=False)
-        msd_scores_list = []
-        print(idx)
-
-global_path = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/Akita/{disease}" #where final data will be moved to
-Path(global_path).mkdir(parents=True, exist_ok=True) #just in case the folder where the data will be stored on the Pollard server does not exist yet, create it
-
-#save the last set of SNPs when idx % 500 != 0. i.e, when total number of variants isn't divisable by 500.
 max_df = pd.DataFrame(maxed_scores_list)
-max_df.to_csv(f"{scratch_path}/Akita_max_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",mode = 'a',index=False,header=False)
-shutil.move(f"{scratch_path}/Akita_max_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",f"{global_path}/Akita_max_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv") #move from scratch to global location on Pollard NAS
+max_df.to_csv(f"{output_dir}/Akita_max_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",index=False,header=True)
+maxed_scores_list = []
 
 
 msd_df = pd.DataFrame(msd_scores_list)
-msd_df.to_csv(f"{scratch_path}/Akita_msd_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",mode = 'a',index=False,header=False)
-shutil.move(f"{scratch_path}/Akita_msd_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",f"{global_path}/Akita_msd_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv") #move from scratch to global location on Pollard NAS
-
-
-print('done')
+msd_df.to_csv(f"{output_dir}/Akita_msd_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",index=False,header=True)
+msd_scores_list = []
 
 
 
