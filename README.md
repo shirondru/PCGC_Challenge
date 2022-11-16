@@ -17,7 +17,7 @@ Usage:
 	* Place this repository under ./models/Sei
 
 (OPTIONAL). Download Enformer:
-	Use either link:
+* Use either link:
 	* https://tfhub.dev/deepmind/enformer/1
 	* https://github.com/deepmind/deepmind-research/tree/master/enformer
 
