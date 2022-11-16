@@ -110,10 +110,15 @@ target_length1 = data_stats['seq_length'] // data_stats['pool_width']
 
 
 if reference_genome == 'hg38':
-  fasta_file = '/pollard/data/projects/sdrusinsky/pollard_lab/data/hg38_genome.fa'
+  fasta_file = './models/hg38_genome.fa'
+  if not os.path.exists(fasta_file):
+    !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip -c > {fasta_file}
+    pyfaidx.Faidx(fasta_file)
 elif reference_genome == 'hg19':
-  fasta_file = "/pollard/data/projects/sdrusinsky/pollard_lab/data/hg19.fa"
-
+  fasta_file = './PCGC_Challenge/models/hg19_genome.fa'
+  if not os.path.exists(fasta_file):
+    !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip -c > {fasta_file}
+    pyfaidx.Faidx(fasta_file)
 
 
 
