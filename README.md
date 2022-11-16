@@ -6,16 +6,20 @@ Models include Akita, Sei, an Enformer
 
 Usage:
 1. Clone repository containing Akita:
-	* https://github.com/calico/basenji
-	* Place this repository under ./models/Akita
+
 	``` 
-	cd ./models/Akita/basenji-master/manuscripts/akita
+	cd ./models/Akita
+	git clone https://github.com/calico/basenji.git
+	cd basenji/manuscripts/akita
 	sh get_model.sh
-	sh get_data.sh
 	```
 2. Clone repository containing Sei:
-	* https://github.com/FunctionLab/sei-framework
-	* Place this repository under ./models/Sei
+	``` 
+	cd ./models/Sei
+	git clone https://github.com/FunctionLab/sei-framework.git
+	cd sei-framework
+	sh ./download_data.sh
+	```
 
 (OPTIONAL). Download Enformer: Only necessary if running code from a machine without internet access. Otherwise, Enformer can be loaded from tfhub.
 * Use either link:
