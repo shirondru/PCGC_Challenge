@@ -11,6 +11,7 @@ Usage:
 	``` 
 	cd ./models/Akita/basenji/manuscripts/akita
 	sh get_model.sh
+	sh get_data.sh
 	```
 2. Clone repository containing Sei:
 	* https://github.com/FunctionLab/sei-framework
