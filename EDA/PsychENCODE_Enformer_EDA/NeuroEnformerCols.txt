@@ -1,0 +1,275 @@
+dnase:cerebellum male adult (27 years) and male adult (35 years)
+dnase:frontal cortex male adult (27 years) and male adult (35 years)
+dnase:frontal cortex female adult (67 years) and female adult (80 years)
+dnase:astrocyte of the hippocampus
+dnase:astrocyte of the spinal cord
+dnase:astrocyte of the spinal cord
+dnase:astrocyte of the cerebellum
+dnase:astrocyte of the cerebellum
+dnase:brain microvascular endothelial cell
+dnase:brain pericyte
+dnase:smooth muscle cell of the brain vasculature female
+dnase:astrocyte
+dnase:brain female embryo (85 days)
+dnase:brain embryo (112 days)
+dnase:spinal cord male embryo (105 days)
+dnase:brain female embryo (96 days)
+dnase:brain female embryo (142 days)
+dnase:neural stem progenitor cell originated from h1-hesc
+dnase:brain female embryo (117 days)
+dnase:brain female embryo (109 days)
+dnase:ecto neural progenitor cell originated from h9
+dnase:brain male embryo (105 days)
+dnase:brain male embryo (72 days) and male embryo (76 days)
+dnase:cerebellar cortex male adult (78 years) and male adult (84 years)
+dnase:brain embryo (80 days)
+dnase:brain male embryo (101 day)
+dnase:brain embryo (56 days) and male embryo (58 days)
+dnase:spinal cord female embryo (89 days)
+dnase:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+dnase:brain male embryo (122 days)
+dnase:spinal cord female embryo (113 days)
+dnase:midbrain male adult (78 years) and male adult (84 years)
+dnase:spinal cord male embryo (96 days)
+dnase:brain female embryo (105 days)
+dnase:occipital lobe male adult (84 years)
+dnase:spinal cord female embryo (59 days) and male embryo (72 days)
+dnase:brain male embryo (104 days)
+dnase:neural progenitor cell originated from h9
+dnase:spinal cord female embryo (87 days)
+dnase:inferior parietal cortex male adult (84 years)
+chip:ctcf:astrocyte
+chip:h3k27ac:astrocyte
+chip:h3k4me3:astrocyte
+chip:h3k9ac:astrocyte
+chip:h4k20me1:astrocyte
+chip:polr2aphosphos5:neural cell
+chip:ctcf:astrocyte of the spinal cord
+chip:ctcf:astrocyte of the spinal cord
+chip:h3k4me3:astrocyte of the spinal cord
+chip:h3k4me3:astrocyte of the spinal cord
+chip:h3k4me3:astrocyte of the cerebellum
+chip:h3k4me3:astrocyte of the cerebellum
+chip:ctcf:astrocyte of the cerebellum
+chip:ctcf:astrocyte of the cerebellum
+chip:ctcf:brain microvascular endothelial cell
+chip:h3k4me3:brain microvascular endothelial cell
+chip:h3k9me3:neuron originated from h9
+chip:neurod1:mcf-7
+chip:h3k27ac:temporal lobe male adult (81 year)
+chip:h3k9me3:brain female embryo (120 days)
+chip:h2afz:neural stem progenitor cell originated from h9
+chip:h3k27me3:neurosphere female embryo (17 weeks) originated from ganglionic eminence
+chip:h3k4me3:spinal cord female embryo (113 days)
+chip:h3k36me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k36me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k4me3:cerebellum male adult (53 years)
+chip:h3k4me2:neural cell
+chip:ctcf:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:ezh2:neural progenitor cell originated from h9
+chip:h3k36me3:spinal cord female embryo (113 days)
+chip:h3k4me1:brain female embryo (120 days)
+chip:h3k4me1:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k4me1:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k4me3:neurosphere embryo (15 weeks) originated from ganglionic eminence
+chip:h3k9me3:radial glial cell genetically modified using stable transfection originated from h9
+chip:h3k9ac:neural progenitor cell originated from h9
+chip:h3k27me3:mid-neurogenesis radial glial cells genetically modified using stable transfection originated from h9
+chip:h3k27me3:mid-neurogenesis radial glial cells genetically modified using stable transfection originated from h9
+chip:h3k36me3:temporal lobe male adult (81 year)
+chip:h2bk15ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k27ac:neural cell
+chip:ctcf:neural progenitor cell originated from h9
+chip:h3k36me3:neurosphere female embryo (17 weeks) originated from ganglionic eminence
+chip:h3k4me3:neurosphere female embryo (17 weeks) originated from ganglionic eminence
+chip:h3k36me3:radial glial cell genetically modified using stable transfection originated from h9
+chip:h3k27me3:neural progenitor cell originated from h9
+chip:h3k4me3:brain male embryo (122 days)
+chip:h3k9me3:brain female embryo (17 weeks)
+chip:h3k4me1:neural stem progenitor cell originated from h9
+chip:h3k9me2:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k18ac:neural stem progenitor cell originated from h1-hesc
+chip:rad21:neural cell originated from h1-hesc
+chip:h3k27ac:spinal cord female embryo (108 days)
+chip:h3k36me3:neural stem progenitor cell originated from h9
+chip:h3k9me3:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k4me1:neural stem progenitor cell originated from h1-hesc
+chip:h3k36me3:neural stem progenitor cell originated from h1-hesc
+chip:h3k9me3:neural progenitor cell originated from h9
+chip:h4k91ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k9me3:spinal cord female embryo (108 days)
+chip:h3k4me1:neural progenitor cell originated from h9
+chip:h4k8ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k4me1:radial glial cell genetically modified using stable transfection originated from h9
+chip:h3k4me1:mid-neurogenesis radial glial cells genetically modified using stable transfection none and originated from h9
+chip:h3k4me1:mid-neurogenesis radial glial cells genetically modified using stable transfection none and originated from h9
+chip:h3k4me3:neurosphere embryo (15 weeks) originated from ganglionic eminence
+chip:h3k4me1:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k4me3:neuron originated from h9
+chip:h3k4me3:neural stem progenitor cell originated from h9
+chip:h3k27me3:temporal lobe male adult (81 year)
+chip:h3k23ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k36me3:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k9me3:temporal lobe male adult (81 year)
+chip:h3k27ac:neurosphere embryo (15 weeks) originated from ganglionic eminence
+chip:h3k4me1:brain female embryo (17 weeks)
+chip:h3k9me3:neural stem progenitor cell originated from h1-hesc
+chip:h3k9me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k9me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k9me2:neural cell
+chip:smc3:neural cell originated from h1-hesc
+chip:h3k9me3:neural cell
+chip:h3k9me3:temporal lobe female adult (75 years)
+chip:h3k4me1:neurosphere female embryo (17 weeks) originated from ganglionic eminence
+chip:zeb1:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k36me3:neurosphere female embryo (17 weeks) originated from ganglionic eminence
+chip:h3k4me3:radial glial cell genetically modified using stable transfection originated from h9
+chip:h3k27me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k27me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k27me3:neurosphere female embryo (17 weeks) originated from ganglionic eminence
+chip:h3k27ac:neural progenitor cell originated from h9
+chip:h3k4me1:neurosphere female embryo (17 weeks) originated from ganglionic eminence
+chip:h3k27me3:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k4ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k4me3:temporal lobe female adult (75 years)
+chip:h3k27me3:brain female embryo (120 days)
+chip:h3k4me1:temporal lobe female adult (75 years)
+chip:h3k79me2:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k4me2:neural stem progenitor cell originated from h1-hesc
+chip:h3k36me3:neuron originated from h9
+chip:ezh2:neural cell
+chip:h3k4me1:neurosphere embryo (15 weeks) originated from ganglionic eminence
+chip:h3k79me2:neural progenitor cell originated from h9
+chip:h3k9ac:neural cell
+chip:h3k27me3:neural stem progenitor cell originated from h9
+chip:h3k9me3:neurosphere female embryo (17 weeks) originated from ganglionic eminence
+chip:h3k27me3:temporal lobe female adult (75 years)
+chip:h3k79me1:neural stem progenitor cell originated from h1-hesc
+chip:h3k36me3:neural progenitor cell originated from h9
+chip:h3k9me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k9me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3f3a:neural progenitor cell originated from h9
+chip:h3k9ac:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k4me3:neural cell
+chip:h3k27ac:temporal lobe female adult (75 years)
+chip:ctcf:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k9ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k27me3:brain male embryo (122 days)
+chip:h3k4me2:neural progenitor cell originated from h9
+chip:h2bk5ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k27me3:neural cell
+chip:ezh2phosphot487:neural progenitor cell originated from h9
+chip:h3k4me3:neural progenitor cell originated from h9
+chip:h3k4me3:neuroepithelial stem cell genetically modified using stable transfection originated from h9
+chip:h3k27me3:neurosphere embryo (15 weeks) originated from ganglionic eminence
+chip:h2afz:neural progenitor cell originated from h9
+chip:h3f3a:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k14ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k27me3:neuron originated from h9
+chip:h3k36me3:neuroepithelial stem cell genetically modified using stable transfection originated from h9
+chip:h3k9me3:mid-neurogenesis radial glial cells genetically modified using stable transfection originated from h9
+chip:h3k9me3:mid-neurogenesis radial glial cells genetically modified using stable transfection originated from h9
+chip:h3k27me3:neural stem progenitor cell originated from h1-hesc
+chip:h3k27me3:neural stem progenitor cell originated from h1-hesc
+chip:h3k9me3:neurosphere embryo (15 weeks) originated from ganglionic eminence
+chip:h3k36me3:neural cell
+chip:h3k4me3:temporal lobe male adult (81 year)
+chip:h4k20me1:neural progenitor cell originated from h9
+chip:h3k4me1:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k4me1:neurosphere female embryo (17 weeks) originated from cortex
+chip:h2ak5ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k9me3:neurosphere female embryo (17 weeks) originated from ganglionic eminence
+chip:h3k36me3:neurosphere embryo (15 weeks) originated from ganglionic eminence
+chip:h3k9ac:temporal lobe female adult (75 years)
+chip:h3k4me3:brain female embryo (17 weeks)
+chip:h3k36me3:temporal lobe female adult (75 years)
+chip:h3k27ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k9me3:neural stem progenitor cell originated from h9
+chip:h2bk120ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k4me1:neuron originated from h9
+chip:h3k36me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k36me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h2afz:neural cell
+chip:h4k20me1:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k4me2:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:ctcf:neural cell originated from h1-hesc
+chip:h3k9me3:brain male embryo (122 days)
+chip:smarca4:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k27ac:neuroepithelial stem cell genetically modified using stable transfection none and originated from h9
+chip:ep300:neural cell originated from h1-hesc
+chip:h3k4me3:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k27me3:spinal cord female embryo (108 days)
+chip:h3k4me1:spinal cord female embryo (108 days)
+chip:h3k36me3:brain female embryo (17 weeks)
+chip:h3f3a:neural cell
+chip:ezh2phosphot487:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k36me3:brain male embryo (122 days)
+chip:polr2aphosphos5:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k4me1:neuroepithelial stem cell genetically modified using stable transfection originated from h9
+chip:h3k4me1:temporal lobe male adult (81 year)
+chip:h3k27ac:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:h3k4me3:mid-neurogenesis radial glial cells genetically modified using stable transfection originated from h9
+chip:h3k4me3:mid-neurogenesis radial glial cells genetically modified using stable transfection originated from h9
+chip:h2afz:neuron originated from h9
+chip:mxi1:neural cell originated from h1-hesc
+chip:h2bk12ac:neural stem progenitor cell originated from h1-hesc
+chip:h3k27me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k27me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k4me3:neural stem progenitor cell originated from h1-hesc
+chip:h3k4me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h3k4me3:neurosphere female embryo (17 weeks) originated from cortex
+chip:h4k20me1:neural cell
+chip:h2afz:bipolar neuron originated from gm23338 treated with 0.5 ug/ml doxycycline hyclate for 4 days
+chip:neurod1:k562
+chip:h3k27me3:brain female embryo (17 weeks)
+chip:.:batch1_chrom1_lovo_neurog3_mouse_passedqc / lovo / colon adenocarcinoma
+cage:brain, adult, pool1
+cage:temporal lobe, adult, pool1
+cage:parietal lobe, adult, pool1
+cage:frontal lobe, adult, pool1
+cage:smooth muscle cells - brain vascular,
+cage:astrocyte - cerebral cortex,
+cage:astrocyte - cerebral cortex,
+cage:astrocyte - cerebral cortex,
+cage:neural stem cells,
+cage:fibroblast - skin spinal muscular atrophy,
+cage:neuroblastoma cell line:chp-134
+cage:neuroblastoma cell line:nb-1
+cage:astrocyte - cerebellum,
+cage:astrocyte - cerebellum,
+cage:neuroectodermal tumor cell line:fu-rpnt-1
+cage:neuroectodermal tumor cell line:fu-rpnt-2
+cage:spinal cord, fetal,
+cage:temporal lobe, fetal, , tech_
+cage:parietal lobe, fetal,
+cage:occipital lobe, fetal,
+cage:occipital lobe, adult,
+cage:cerebellum, adult, pool1
+cage:brain, adult,
+cage:brain, fetal, pool1
+cage:neuroblastoma cell line:nh-12
+cage:neuroblastoma cell line:nbsussr
+cage:peripheral neuroectodermal tumor cell line:ku-sn
+cage:neuroepithelioma cell line:sk-n-mc
+cage:neurofibroma cell line:hs 53.t
+cage:neuroectodermal tumor cell line:task1
+cage:spinal cord, adult,
+cage:amygdala, adult,
+cage:parietal lobe, adult,
+cage:occipital cortex, adult,
+cage:cerebellum, adult,
+cage:neurons,
+cage:perineurial cells,
+cage:cerebral meninges, adult
+cage:cerebrospinal fluid,
+cage:amygdala - adult,
+cage:parietal lobe - adult,
+cage:occipital cortex - adult,
+cage:cerebellum - adult,
+cage:spinal cord - adult,
+cage:occipital cortex, newborn,
+cage:parietal lobe, newborn,
+cage:cerebellum, newborn,
+cage:spinal cord, newborn,
+cage:amygdala, newborn,
+cage:parietal cortex, adult,

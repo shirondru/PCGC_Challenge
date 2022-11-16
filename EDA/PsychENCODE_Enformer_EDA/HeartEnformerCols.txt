@@ -1,0 +1,400 @@
+dnase:heart male adult (27 years) and male adult (35 years)
+dnase:endothelial cell of umbilical vein newborn
+dnase:endothelial cell of umbilical vein newborn
+dnase:stromal cell of bone marrow male
+dnase:brain microvascular endothelial cell
+dnase:brain microvascular endothelial cell
+dnase:brain pericyte
+dnase:smooth muscle cell of the brain vasculature female
+dnase:smooth muscle cell of the brain vasculature female
+dnase:dermis blood vessel endothelial cell female adult
+dnase:dermis blood vessel endothelial cell female adult
+dnase:dermis blood vessel endothelial cell female adult
+dnase:dermis blood vessel endothelial cell female adult
+dnase:dermis blood vessel endothelial cell male newborn
+dnase:dermis blood vessel endothelial cell male newborn
+dnase:dermis microvascular lymphatic vessel endothelial cell female
+dnase:dermis microvascular lymphatic vessel endothelial cell female
+dnase:dermis microvascular lymphatic vessel endothelial cell male
+dnase:dermis microvascular lymphatic vessel endothelial cell male
+dnase:dermis blood vessel endothelial cell male newborn
+dnase:dermis blood vessel endothelial cell male newborn
+dnase:lung microvascular endothelial cell female
+dnase:lung microvascular endothelial cell female
+dnase:lung microvascular endothelial cell female
+dnase:lung microvascular endothelial cell female
+dnase:pulmonary artery endothelial cell female
+dnase:pulmonary artery endothelial cell female
+dnase:fibroblast of pulmonary artery
+dnase:glomerular endothelial cell
+dnase:endothelial cell of umbilical vein newborn
+dnase:endothelial cell of umbilical vein newborn
+dnase:coronary artery female adult (53 years)
+dnase:coronary artery female adult (53 years)
+dnase:heart female embryo (91 day)
+dnase:heart left ventricle female adult (53 years)
+dnase:heart left ventricle female adult (53 years)
+dnase:tibial artery female adult (53 years)
+dnase:common myeloid progenitor, cd34-positive female adult (27 years)
+dnase:heart female embryo (105 days)
+dnase:heart female embryo (117 days)
+dnase:heart female embryo (110 days)
+dnase:common myeloid progenitor, cd34-positive female
+dnase:common myeloid progenitor, cd34-positive male adult
+dnase:right atrium auricular region female adult (51 year)
+dnase:common myeloid progenitor, cd34-positive male adult (49 years)
+dnase:heart male child (3 years)
+dnase:heart male embryo (110 days)
+dnase:heart male embryo (105 days)
+dnase:common myeloid progenitor, cd34-positive female adult (50 years)
+dnase:tibial artery male adult (37 years)
+dnase:heart embryo (101 day)
+dnase:cd1c-positive myeloid dendritic cell
+dnase:heart male embryo (120 days)
+dnase:left cardiac atrium female embryo (101 day)
+dnase:common myeloid progenitor, cd34-positive male adult (36 years)
+dnase:common myeloid progenitor, cd34-positive female adult (33 years)
+dnase:common myeloid progenitor, cd34-positive male adult (42 years)
+dnase:heart left ventricle female embryo (136 days)
+dnase:heart left ventricle female embryo (136 days)
+dnase:heart female embryo (147 days)
+dnase:heart male embryo (96 days)
+dnase:common myeloid progenitor, cd34-positive male
+dnase:common myeloid progenitor, cd34-positive male adult (23 years)
+dnase:heart embryo (59 days) and female embryo (76 days)
+dnase:heart male embryo (72 days) and male embryo (76 days)
+dnase:common myeloid progenitor, cd34-positive male adult (43 years)
+dnase:heart right ventricle female embryo (101 day) and female embryo (103 days)
+dnase:heart right ventricle female embryo (101 day) and female embryo (103 days)
+dnase:heart female embryo (116 days) and female embryo (98 days)
+dnase:right atrium auricular region female adult (53 years)
+dnase:heart embryo (80 days)
+dnase:heart embryo (96 days)
+dnase:heart female embryo (103 days)
+dnase:heart left ventricle female embryo (101 day) and female embryo (103 days)
+dnase:heart left ventricle female embryo (101 day) and female embryo (103 days)
+dnase:kidney capillary endothelial cell female embryo (113 days)
+dnase:coronary artery female adult (51 year)
+dnase:coronary artery female adult (51 year)
+chip:h3k27me3:endothelial cell of umbilical vein male newborn
+chip:h3k27me3:endothelial cell of umbilical vein male newborn
+chip:h3k4me2:endothelial cell of umbilical vein male newborn
+chip:h3k4me2:endothelial cell of umbilical vein male newborn
+chip:h3k4me3:endothelial cell of umbilical vein male newborn
+chip:h3k4me3:endothelial cell of umbilical vein male newborn
+chip:ctcf:endothelial cell of umbilical vein male newborn
+chip:ctcf:endothelial cell of umbilical vein male newborn
+chip:h3k27ac:endothelial cell of umbilical vein male newborn
+chip:h3k27ac:endothelial cell of umbilical vein male newborn
+chip:h2afz:endothelial cell of umbilical vein male newborn
+chip:h2afz:endothelial cell of umbilical vein male newborn
+chip:h3k79me2:endothelial cell of umbilical vein male newborn
+chip:h3k79me2:endothelial cell of umbilical vein male newborn
+chip:h3k9me3:endothelial cell of umbilical vein male newborn
+chip:h3k9me3:endothelial cell of umbilical vein male newborn
+chip:polr2a:endothelial cell of umbilical vein newborn
+chip:polr2a:endothelial cell of umbilical vein newborn
+chip:polr2aphosphos5:endothelial cell of umbilical vein newborn
+chip:polr2aphosphos5:endothelial cell of umbilical vein newborn
+chip:ctcf:brain microvascular endothelial cell
+chip:ctcf:brain microvascular endothelial cell
+chip:h3k4me3:brain microvascular endothelial cell
+chip:h3k4me3:brain microvascular endothelial cell
+chip:ctcf:fibroblast of pulmonary artery
+chip:h3k4me3:fibroblast of pulmonary artery
+chip:h3k36me3:endothelial cell of umbilical vein male newborn
+chip:h3k36me3:endothelial cell of umbilical vein male newborn
+chip:h3k4me3:endothelial cell of umbilical vein male newborn
+chip:h3k4me3:endothelial cell of umbilical vein male newborn
+chip:h3k27me3:endothelial cell of umbilical vein male newborn
+chip:h3k27me3:endothelial cell of umbilical vein male newborn
+chip:fos:endothelial cell of umbilical vein newborn
+chip:fos:endothelial cell of umbilical vein newborn
+chip:gata2:endothelial cell of umbilical vein newborn
+chip:gata2:endothelial cell of umbilical vein newborn
+chip:h3k9me3:heart left ventricle female adult (53 years)
+chip:h3k9me3:heart left ventricle female adult (53 years)
+chip:h3k9me3:stomach smooth muscle female adult (84 years)
+chip:h3k27me3:common myeloid progenitor, cd34-positive male adult (36 years)
+chip:h3k4me1:heart right ventricle male child (3 years)
+chip:h3k4me1:heart right ventricle male child (3 years)
+chip:h3k27ac:heart right ventricle male child (3 years)
+chip:h3k27ac:heart right ventricle male child (3 years)
+chip:h3k9me3:stomach smooth muscle male adult (59 years)
+chip:h3k27me3:common myeloid progenitor, cd34-positive
+chip:h3k4me3:common myeloid progenitor, cd34-positive
+chip:h3k36me3:common myeloid progenitor, cd34-positive male adult (42 years)
+chip:ctcf:right atrium auricular region female adult (53 years)
+chip:h3k27me3:heart right ventricle male adult (34 years)
+chip:h3k27me3:heart right ventricle male adult (34 years)
+chip:h3k27ac:right cardiac atrium male adult (34 years)
+chip:h3k4me1:heart right ventricle male adult (34 years)
+chip:h3k4me1:heart right ventricle male adult (34 years)
+chip:h3k36me3:stomach smooth muscle male adult (59 years)
+chip:h3k9ac:heart male embryo (105 days)
+chip:h3k9me3:heart right ventricle male child (3 years)
+chip:h3k9me3:heart right ventricle male child (3 years)
+chip:h3k9me3:smooth muscle cell originated from h9
+chip:h3k27ac:peripheral blood mononuclear cell male adult (39 years)
+chip:h3k4me3:heart right ventricle male child (3 years)
+chip:h3k4me3:heart right ventricle male child (3 years)
+chip:h3k27me3:heart left ventricle male child (3 years)
+chip:h3k27me3:heart left ventricle male child (3 years)
+chip:h3k4me1:heart left ventricle male adult (34 years)
+chip:h3k4me1:heart left ventricle male adult (34 years)
+chip:h3k36me3:tibial artery female adult (53 years)
+chip:h3k4me1:smooth muscle cell originated from h9
+chip:h3k4me3:common myeloid progenitor, cd34-positive female adult (33 years)
+chip:h3k36me3:heart right ventricle male adult (34 years)
+chip:h3k36me3:heart right ventricle male adult (34 years)
+chip:h3k27me3:smooth muscle cell originated from h9
+chip:h3k27ac:heart left ventricle male adult (34 years)
+chip:h3k27ac:heart left ventricle male adult (34 years)
+chip:h3k27ac:peripheral blood mononuclear cell female adult (28 years)
+chip:h3k36me3:peripheral blood mononuclear cell male adult (32 years)
+chip:h3k4me3:common myeloid progenitor, cd34-positive male adult
+chip:h3k36me3:common myeloid progenitor, cd34-positive female adult (33 years)
+chip:h3k9me3:tibial artery female adult (53 years)
+chip:h3k4me3:stomach smooth muscle male adult (59 years)
+chip:h3k4me1:common myeloid progenitor, cd34-positive
+chip:ctcf:coronary artery female adult (53 years)
+chip:ctcf:coronary artery female adult (53 years)
+chip:h3k9me3:heart left ventricle male adult (34 years)
+chip:h3k9me3:heart left ventricle male adult (34 years)
+chip:h3k9me3:common myeloid progenitor, cd34-positive male adult (36 years)
+chip:h4k20me1:smooth muscle cell originated from h9
+chip:h3k4me3:common myeloid progenitor, cd34-positive male adult (42 years)
+chip:h3k4me1:common myeloid progenitor, cd34-positive male adult (36 years)
+chip:h3k4me3:peripheral blood mononuclear cell female adult (28 years)
+chip:h3k27ac:smooth muscle cell originated from h9
+chip:h3k27me3:stomach smooth muscle male adult (59 years)
+chip:h3k4me1:heart left ventricle male child (3 years)
+chip:h3k4me1:heart left ventricle male child (3 years)
+chip:h3k4me1:tibial artery female adult (53 years)
+chip:h3k9me3:common myeloid progenitor, cd34-positive male adult (42 years)
+chip:h3k9me3:peripheral blood mononuclear cell male adult (39 years)
+chip:ctcf:smooth muscle cell originated from h9
+chip:h3k36me3:common myeloid progenitor, cd34-positive male adult (36 years)
+chip:h3k36me3:stomach smooth muscle female adult (84 years)
+chip:h3k4me3:peripheral blood mononuclear cell male adult (39 years)
+chip:h3k27me3:heart embryo (101 day)
+chip:h3k27me3:rectal smooth muscle tissue female adult (50 years)
+chip:h3k36me3:regulatory t cell originated from blood cell
+chip:h2afz:smooth muscle cell originated from h9
+chip:h3k27me3:common myeloid progenitor, cd34-positive
+chip:polr2a:heart left ventricle female adult (53 years)
+chip:polr2a:heart left ventricle female adult (53 years)
+chip:h3k4me1:peripheral blood mononuclear cell male adult (27 years)
+chip:h3k4me1:stomach smooth muscle female adult (84 years)
+chip:h3k9ac:stomach smooth muscle male adult (59 years)
+chip:h3k4me1:common myeloid progenitor, cd34-positive female adult (27 years)
+chip:h3k4me3:coronary artery female adult (53 years)
+chip:h3k4me3:coronary artery female adult (53 years)
+chip:h3k9ac:rectal smooth muscle tissue female adult (50 years)
+chip:h3k27me3:common myeloid progenitor, cd34-positive female adult (33 years)
+chip:h3k4me3:heart male embryo (91 day)
+chip:h3k4me1:right atrium auricular region female adult (53 years)
+chip:h3k4me3:peripheral blood mononuclear cell male adult (32 years)
+chip:h3k4me3:heart left ventricle male child (3 years)
+chip:h3k4me3:heart left ventricle male child (3 years)
+chip:h3k9me3:peripheral blood mononuclear cell male adult (27 years)
+chip:h3k27me3:peripheral blood mononuclear cell female adult (28 years)
+chip:h3k4me1:common myeloid progenitor, cd34-positive female adult (33 years)
+chip:h3k4me1:peripheral blood mononuclear cell male adult (39 years)
+chip:h3k36me3:heart left ventricle male adult (34 years)
+chip:h3k36me3:heart left ventricle male adult (34 years)
+chip:h3k4me3:common myeloid progenitor, cd34-positive male adult (36 years)
+chip:h3k4me1:heart left ventricle female adult (53 years)
+chip:h3k4me1:heart left ventricle female adult (53 years)
+chip:h3k9me3:regulatory t cell originated from blood cell
+chip:h3k27me3:peripheral blood mononuclear cell male adult (28 years)
+chip:h3k9me3:heart left ventricle male child (3 years)
+chip:h3k9me3:heart left ventricle male child (3 years)
+chip:h3k4me3:peripheral blood mononuclear cell male adult (27 years)
+chip:h3k27ac:coronary artery female adult (53 years)
+chip:h3k27ac:coronary artery female adult (53 years)
+chip:h3k36me3:peripheral blood mononuclear cell male adult (28 years)
+chip:h3k27me3:common myeloid progenitor, cd34-positive male adult (42 years)
+chip:h3k27ac:heart left ventricle male adult (32 years)
+chip:h3k27ac:heart left ventricle male adult (32 years)
+chip:h3k4me1:rectal smooth muscle tissue female adult (50 years)
+chip:h3k4me1:heart male embryo (105 days)
+chip:h3k4me1:peripheral blood mononuclear cell male adult (32 years)
+chip:h3k4me3:heart left ventricle male adult (34 years)
+chip:h3k4me3:heart left ventricle male adult (34 years)
+chip:h3k9me3:peripheral blood mononuclear cell male adult (28 years)
+chip:h3k79me2:smooth muscle cell originated from h9
+chip:h3k36me3:heart left ventricle female adult (53 years)
+chip:h3k36me3:heart left ventricle female adult (53 years)
+chip:h3k27me3:heart left ventricle male adult (34 years)
+chip:h3k27me3:heart left ventricle male adult (34 years)
+chip:h3k4me3:smooth muscle cell originated from h9
+chip:h3k4me3:stomach smooth muscle female adult (84 years)
+chip:h3k9ac:smooth muscle cell originated from h9
+chip:h3k27me3:tibial artery female adult (53 years)
+chip:ctcf:heart left ventricle female adult (53 years)
+chip:ctcf:heart left ventricle female adult (53 years)
+chip:h3k4me3:right cardiac atrium male adult (34 years)
+chip:h3k27me3:peripheral blood mononuclear cell male adult (39 years)
+chip:h3k27ac:heart left ventricle male child (3 years)
+chip:h3k27ac:heart left ventricle male child (3 years)
+chip:h3k4me3:endothelial cell of umbilical vein male newborn
+chip:h3k4me3:endothelial cell of umbilical vein male newborn
+chip:h3k27ac:right atrium auricular region female adult (53 years)
+chip:h3k9me3:right cardiac atrium male adult (34 years)
+chip:h3k9me3:peripheral blood mononuclear cell female adult (28 years)
+chip:h3k27ac:peripheral blood mononuclear cell male adult (32 years)
+chip:h3k36me3:heart right ventricle male child (3 years)
+chip:h3k36me3:heart right ventricle male child (3 years)
+chip:h3k27ac:common myeloid progenitor, cd34-positive female adult (33 years)
+chip:h3k36me3:heart embryo (101 day)
+chip:h3k27me3:regulatory t cell originated from blood cell
+chip:h3k36me3:smooth muscle cell originated from h9
+chip:h3k27ac:rectal smooth muscle tissue female adult (50 years)
+chip:h3k4me1:right cardiac atrium male adult (34 years)
+chip:h3f3a:smooth muscle cell originated from h9
+chip:h3k27me3:heart right ventricle male child (3 years)
+chip:h3k27me3:heart right ventricle male child (3 years)
+chip:h3k4me1:heart male embryo (91 day)
+chip:h3k9me3:t-helper 17 cell originated from blood cell
+chip:h3k4me3:common myeloid progenitor, cd34-positive female adult (27 years)
+chip:h3k4me1:common myeloid progenitor, cd34-positive male adult (42 years)
+chip:h3k36me3:peripheral blood mononuclear cell male adult (39 years)
+chip:h3k36me3:rectal smooth muscle tissue female adult (50 years)
+chip:ctcf:tibial artery male adult (37 years)
+chip:polr2a:heart left ventricle female adult (51 year)
+chip:polr2a:heart left ventricle female adult (51 year)
+chip:h3k9me3:heart embryo (101 day)
+chip:h3k36me3:common myeloid progenitor, cd34-positive female adult (27 years)
+chip:h3k9me3:common myeloid progenitor, cd34-positive female adult (27 years)
+chip:h3k9ac:stomach smooth muscle female adult (84 years)
+chip:h3k4me2:smooth muscle cell originated from h9
+chip:ctcf:heart left ventricle female adult (51 year)
+chip:ctcf:heart left ventricle female adult (51 year)
+chip:h3k4me3:heart right ventricle male adult (34 years)
+chip:h3k4me3:heart right ventricle male adult (34 years)
+chip:h3k4me3:right atrium auricular region female adult (53 years)
+chip:h3k27me3:right atrium auricular region female adult (53 years)
+chip:h3k9ac:peripheral blood mononuclear cell male adult (28 years)
+chip:h3k27ac:heart left ventricle female adult (53 years)
+chip:h3k27ac:heart left ventricle female adult (53 years)
+chip:h3k27me3:common myeloid progenitor, cd34-positive female adult (27 years)
+chip:h3k27me3:peripheral blood mononuclear cell male adult (32 years)
+chip:h3k36me3:heart left ventricle male child (3 years)
+chip:h3k36me3:heart left ventricle male child (3 years)
+chip:h3k27ac:common myeloid progenitor, cd34-positive female adult (27 years)
+chip:h3k4me3:heart left ventricle female adult (53 years)
+chip:h3k4me3:heart left ventricle female adult (53 years)
+chip:h3k36me3:common myeloid progenitor, cd34-positive
+chip:h3k27ac:heart right ventricle male adult (34 years)
+chip:h3k27ac:heart right ventricle male adult (34 years)
+chip:h3k27me3:stomach smooth muscle female adult (84 years)
+chip:h3k4me3:rectal smooth muscle tissue female adult (50 years)
+chip:h3k9me3:common myeloid progenitor, cd34-positive female adult (33 years)
+chip:h3k4me3:regulatory t cell originated from blood cell
+chip:h3k36me3:right atrium auricular region female adult (53 years)
+chip:h3k9ac:peripheral blood mononuclear cell male adult (27 years)
+chip:h3k27ac:stomach smooth muscle female adult (84 years)
+chip:h3k27me3:right cardiac atrium male adult (34 years)
+chip:h3k9me3:common myeloid progenitor, cd34-positive
+chip:h3k9me3:peripheral blood mononuclear cell male adult (32 years)
+chip:h3k27me3:heart left ventricle female adult (53 years)
+chip:h3k27me3:heart left ventricle female adult (53 years)
+chip:h3k36me3:peripheral blood mononuclear cell female adult (28 years)
+cage:heart, adult, pool1
+cage:heart, fetal, pool1
+cage:acute myeloid leukemia (fab m5) cell line:thp-1 (fresh)
+cage:acute myeloid leukemia (fab m5) cell line:thp-1 (revived)
+cage:acute myeloid leukemia (fab m5) cell line:thp-1 (thawed)
+cage:endothelial cells - aortic,
+cage:smooth muscle cells - aortic,
+cage:smooth muscle cells - umbilical artery,
+cage:smooth muscle cells - umbilical artery,
+cage:mesothelial cells,
+cage:cd14+ monocyte derived endothelial progenitor cells,
+cage:peripheral blood mononuclear cells,
+cage:smooth muscle cells - brain vascular,
+cage:smooth muscle cells - brain vascular,
+cage:endothelial cells - lymphatic,
+cage:smooth muscle cells - colonic,
+cage:endothelial cells - umbilical vein,
+cage:endothelial cells - umbilical vein,
+cage:pancreatic stromal cells,
+cage:fibroblast - pulmonary artery,
+cage:prostate stromal cells,
+cage:cord blood derived cell line:cobl-a untreated
+cage:cord blood derived cell line:cobl-a 24h infection(-c)
+cage:cord blood derived cell line:cobl-a 24h infection
+cage:smooth muscle cells - internal thoracic artery,
+cage:smooth muscle cells - internal thoracic artery,
+cage:whole blood (ribopure), , donation1
+cage:whole blood (ribopure), , donation2
+cage:smooth muscle cells - brachiocephalic,
+cage:smooth muscle cells - carotid,
+cage:smooth muscle cells - carotid,
+cage:smooth muscle cells - coronary artery,
+cage:smooth muscle cells - coronary artery,
+cage:smooth muscle cells - coronary artery,
+cage:smooth muscle cells - pulmonary artery,
+cage:smooth muscle cells - pulmonary artery,
+cage:smooth muscle cells - subclavian artery,
+cage:smooth muscle cells - subclavian artery,
+cage:smooth muscle cells - umbilical artery,
+cage:smooth muscle cells - umbilical artery,
+cage:endometrial stromal sarcoma cell line:omc-9
+cage:pericytes,
+cage:smooth muscle cells - esophageal,
+cage:smooth muscle cells - bronchial,
+cage:smooth muscle cells - tracheal,
+cage:multipotent cord blood unrestricted somatic stem cells,
+cage:endothelial cells - microvascular,
+cage:endothelial cells - microvascular,
+cage:endothelial cells - vein,
+cage:endothelial cells - vein,
+cage:smooth muscle, adult, pool1
+cage:heart, adult, diseased post-infarction,
+cage:heart, adult, diseased,
+cage:blood, adult, pool1
+cage:left ventricle, adult,
+cage:left atrium, adult,
+cage:acute myeloid leukemia (fab m2) cell line:nkm-1
+cage:acute myeloid leukemia (fab m7) cell line:mkpl-1
+cage:smooth muscle cells - prostate,
+cage:smooth muscle cells - uterine,
+cage:endothelial cells - thoracic,
+cage:bone marrow stromal cell line:stromanktert
+cage:whole blood (ribopure), , donation3
+cage:endothelial cells - artery,
+cage:endothelial cells - artery,
+cage:renal glomerular endothelial cells,
+cage:hepatic sinusoidal endothelial cells,
+cage:common myeloid progenitor cmp,
+cage:cd133+ stem cells - cord blood derived, pool1
+cage:smooth muscle cells - umbilical vein,
+cage:smooth muscle cells - umbilical vein,
+cage:smooth muscle cells - intestinal,
+cage:artery, adult
+cage:vein, adult
+cage:heart - mitral valve, adult
+cage:heart - pulmonic valve, adult
+cage:heart - tricuspid valve, adult
+cage:smooth muscle cells - bladder,
+cage:acute myeloid leukemia (fab m7) cell line:m-mok
+cage:acute myeloid leukemia (fab m5) cell line:nomo-1
+cage:acute myeloid leukemia (fab m5) cell line:p31/fuj
+cage:acute myeloid leukemia (fab m2) cell line:kasumi-6
+cage:acute myeloid leukemia (fab m0) cell line:kg-1
+cage:acute myeloid leukemia (fab m1) cell line:hyt-1
+cage:acute myeloid leukemia (fab m3) cell line:hl60
+cage:acute myeloid leukemia (fab m4eo) cell line:eol-1
+cage:acute myeloid leukemia (fab m4eo) cell line:eol-3
+cage:acute myeloid leukemia (fab m5) cell line:u-937 de-4
+cage:acute myeloid leukemia (fab m6) cell line:eeb
+cage:acute myeloid leukemia (fab m6) cell line:f-36e
+cage:acute myeloid leukemia (fab m0) cell line:kasumi-3
+cage:acute myeloid leukemia (fab m2) cell line:kasumi-1
+cage:acute myeloid leukemia (fab m4) cell line:fkh-1
+cage:acute myeloid leukemia (fab m4) cell line:hnt-34
+cage:acute myeloid leukemia (fab m6) cell line:f-36p
+cage:smooth muscle cells - airway, asthmatic,
+cage:smooth muscle cells - airway, control,

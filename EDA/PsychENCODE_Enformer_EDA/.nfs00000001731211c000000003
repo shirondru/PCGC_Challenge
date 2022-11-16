@@ -1,0 +1,16 @@
+ /bin/bash                    
+
+. /pollard/data/projects/sdrusinsky/pollard_lab/variant_modeling/bin/activate #activate env
+
+job_script=/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Enformer_EDA/FindEnformerSigVariants_job_script.sh
+
+total_num_tasks=2 #two tasks; one for summed and one for max Enformer analysis
+diseases=("$@") #save arguments as an array
+echo $diseases
+qsub -cwd -t 1-$total_num_tasks -tc 10 -N EnformerFindSigVariants $job_script ${diseases[*]}
+
+
+
+# example command:
+# diseases=(PTSD Autism)
+# sh FindEnformerSigVariants_job_script.sh $diseases

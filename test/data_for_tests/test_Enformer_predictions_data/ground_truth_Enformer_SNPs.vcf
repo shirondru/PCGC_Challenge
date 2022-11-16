@@ -1,0 +1,11 @@
+##fileformat=VCFv4.1
+##fileDate=20220722
+##source=/wynton/home/hernandez/shirondru/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/test/testEnformerPredictions/gen_testEnformer_vcfs_1.py
+##reference=/wynton/home/hernandez/shirondru/pollard_lab/data/hg38_genome.fa
+#CHROM POS ID REF ALT QUAL FILTER INFO
+CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+chr1	925952	1019397	G	A			
+chr1	925956	1543320	C	T			
+chr1	925969	1648427	C	T			
+chr1	925976	1362713	T	C			
+chr1	925986	1568423	C	T			

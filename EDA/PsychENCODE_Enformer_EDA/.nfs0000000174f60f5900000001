@@ -1,0 +1,21 @@
+ /bin/bash                    
+#$ -o FindEnformerSigVariants.o
+#$ -e FindEnformerSigVariants.e                       
+#$ -cwd                            
+#$ -r y                            
+#$ -l mem_free=150G                  
+#$ -l scratch=50G                   
+#$ -l h_rt=133:00:00                
+                                   
+. /pollard/data/projects/sdrusinsky/pollard_lab/variant_modeling/bin/activate
+
+scoring_system=$1 #either `summed` or `max`
+shift
+diseases=("$@") #save remaining arguments as an array
+# diseases=(ADHD TouretteSyndrome BipolarDisorder UnipolarDepression AnorexiaNervosa ObsessiveCompulsiveDisorder PTSD Schizophrenia Anxiety Alzheimer Autism)
+python3 /pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Enformer_EDA/FindEnformerSigVariants.py --scoring_system $scoring_system --diseases ${diseases[*]}
+
+qstat -j $JOB_ID
+
+# example command:
+# qsub -cwd FindEnformerSigVariants_job_script.sh summed

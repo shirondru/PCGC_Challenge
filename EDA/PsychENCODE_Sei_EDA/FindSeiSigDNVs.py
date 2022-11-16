@@ -1,0 +1,160 @@
+import pandas as pd
+import os
+from collections import defaultdict
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+from datetime import date
+from datetime import datetime
+import argparse
+import sys
+import shutil
+
+parser = argparse.ArgumentParser(description='Compare Sei predictions for PsychENCODE GWAS againts a null distribution to find extreme variants.', prog='FindSeiSigVariants.py')
+parser.add_argument('--disease', nargs = 1, required=True, type=str,  help='Name of disease(s) to score here')
+args = parser.parse_args()
+disease = args.disease #this should be just one disease
+print(disease)
+assert len(disease) == 1, "This code expects to only take 1 disease as input and parallelize them over many SGE array tasks!"
+disease = disease[0] #get the name of the disease out of the list
+print(disease)
+sys.stdout.flush()
+
+def get_file_birthtime(filename):
+    unix_timestamp = os.stat(filename).st_birthtime
+    file_birthdate = datetime.fromtimestamp(unix_timestamp)
+    year = file_birthdate.year
+    month = file_birthdate.month
+    day = file_birthdate.day
+    return f"{year}-{month}-{day}"
+
+#load sei sequence class scores for the disease
+sei_disease_dir = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/Sei/{disease}"
+all_sei_scores = pd.DataFrame()
+for folder in os.listdir(sei_disease_dir):
+    if folder.endswith('.vcf'): 
+        PsychENCODE_disease_sei_var_df = pd.read_csv(os.path.join(sei_disease_dir,folder,'sequence_class_scores.tsv'),sep = '\t')
+        PsychENCODE_disease_sei_var_df['disease'] = disease
+        all_sei_scores = all_sei_scores.append(PsychENCODE_disease_sei_var_df)
+
+
+
+
+##### load null distribution #####
+#null distribution 
+null_path = "/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/Sei/Rare1KGVariants"
+null_class_scores = pd.DataFrame()
+for subdir in os.listdir(null_path):
+    if subdir.endswith('.vcf'):
+        data_dir = os.path.join(null_path,subdir)
+        null_class_scores = null_class_scores.append(pd.read_csv(os.path.join(data_dir,"sequence_class_scores.tsv"),sep='\t'))
+
+score_cols = ['PC1 Polycomb / Heterochromatin', 'L1 Low signal', 'TN1 Transcription',
+       'TN2 Transcription', 'L2 Low signal', 'E1 Stem cell', 'E2 Multi-tissue',
+       'E3 Brain / Melanocyte', 'L3 Low signal', 'E4 Multi-tissue',
+       'TF1 NANOG / FOXA1', 'HET1 Heterochromatin', 'E5 B-cell-like',
+       'E6 Weak epithelial', 'TF2 CEBPB', 'PC2 Weak Polycomb',
+       'E7 Monocyte / Macrophage', 'E8 Weak multi-tissue', 'L4 Low signal',
+       'TF3 FOXA1 / AR / ESR1', 'PC3 Polycomb', 'TN3 Transcription',
+       'L5 Low signal', 'HET2 Heterochromatin', 'L6 Low signal', 'P Promoter',
+       'E9 Liver / Intestine', 'CTCF CTCF-Cohesin', 'TN4 Transcription',
+       'HET3 Heterochromatin', 'E10 Brain', 'TF4 OTX2', 'HET4 Heterochromatin',
+       'L7 Low signal', 'PC4 Polycomb / Bivalent stem cell Enh',
+       'HET5 Centromere', 'E11 T-cell', 'TF5 AR', 'E12 Erythroblast-like',
+       'HET6 Centromere']
+# get 99.9th percentile for each sequence class
+
+def get_quantiles(threshold, null_distribution,score_cols):
+
+    
+    upper_percentiles = defaultdict()
+    lower_percentiles = defaultdict()
+    for score_col in score_cols:
+        upper_percentiles[score_col] = null_distribution[score_col].quantile(threshold)
+        lower_percentiles[score_col] = null_distribution[score_col].quantile(1 - threshold)
+    
+    return upper_percentiles, lower_percentiles
+    
+    
+upper_percentiles, lower_percentiles = get_quantiles(0.999,null_class_scores,score_cols)
+
+
+def get_sig_variants(GWAS_variant_predictions,upper_percentiles,lower_percentiles,score_cols):
+
+    """
+    GWAS_variant_predictions: df with variant effect scores for each lead and tag SNP in the GWAS of interest
+    upper_percentiles: Dictionary with upper threshold for each null distribution above which a variant effect is significant
+    lower_percentiles: Dictionary with lower threshold for each null distribution below which a variant effect is significant
+    score_cols: columns in GWAS_variant_predictions corresponding to variant effect scores
+    
+    """
+    
+    
+    sig_variants = pd.DataFrame()
+    variant_info = ['chrom','pos','ref','alt','disease']
+    for score_col in score_cols:
+        #append variants to df if they are more extreme than the upper or lower threshold
+        sig_variants = sig_variants.append(GWAS_variant_predictions[
+                                    (GWAS_variant_predictions[score_col] >= upper_percentiles[score_col]) | 
+                                    (GWAS_variant_predictions[score_col] <= lower_percentiles[score_col])][variant_info + [score_col]].copy())
+
+    #group variants that are extreme against different null distributions back to the same row
+    sig_variants = sig_variants.groupby(['chrom','pos','ref','alt']).max().reset_index()
+    
+    return sig_variants
+
+sig_variants = get_sig_variants(all_sei_scores,upper_percentiles,lower_percentiles,score_cols)
+
+filename = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Sei_EDA/SeiSig_{disease}_DNVs.csv"
+if os.path.exists(filename): #if there is already data, back it up before re-doing this analysis
+    #make backup of existing sig_variants
+    backup_dir = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Sei_EDA/backups/{disease}"
+    if not os.path.exists(backup_dir):
+        os.mkdir(backup_dir)
+    backup_path = os.path.join(backup_dir,f"SeiSig_{disease}_DNVs_{get_file_birthtime(filename)}.csv")
+    shutil.copy2(filename,backup_path)
+
+sig_variants.to_csv(filename)
+
+def get_pvals(sig_variants,null_distribution,score_cols):
+    """
+    take variants already shown to be significant (to save computation time) and calculate p value for each
+    
+    """
+
+    sig_variants_pval = sig_variants.copy()
+
+    for idx,row in sig_variants.iterrows():
+        #get seq classes this sig variant was significant (i.e not null) in 
+        sig_score_cols = row[score_cols][row[score_cols].notnull()].index #the index here is actually the columns of the dataframe because it's one series
+        values = row[score_cols][row[score_cols].notnull()].values
+
+
+        #iterate through all seq classes this sig variant was significant in and get actual p value using the null distribution
+        for idx2,score_col in enumerate(sig_score_cols):
+
+
+            #get p value, calculated as the number of variants in the null distribution at least as extreme as this one
+            #check if the variant effect score for this variant in this class is positive or negative first to determine the tail the comparison should be made with
+            if values[idx2] > 0: 
+                pval = sum(null_distribution[score_col] >= values[idx2]) / null_distribution.shape[0]
+
+            elif values[idx2] < 0:
+                pval = sum(null_distribution[score_col] <= values[idx2]) / null_distribution.shape[0]
+
+            sig_variants_pval.loc[idx,score_col] = pval #record pval for this variant
+    return sig_variants_pval
+
+sig_variants_pval = get_pvals(sig_variants,null_class_scores,score_cols)
+
+filename = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Sei_EDA/SeiSigPVals_{disease}_DNVs.csv"
+if os.path.exists(filename): #if there is already data, back it up before re-doing this analysis
+    #make backup of existing sig_variants
+    backup_dir = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Sei_EDA/backups/{disease}"
+    if not os.path.exists(backup_dir):
+        os.mkdir(backup_dir)
+    backup_path = os.path.join(backup_dir,f"SeiSigPVals_{disease}_DNVs_{get_file_birthtime(filename)}.csv")
+    shutil.copy2(filename,backup_path)
+
+
+sig_variants_pval.to_csv(filename)

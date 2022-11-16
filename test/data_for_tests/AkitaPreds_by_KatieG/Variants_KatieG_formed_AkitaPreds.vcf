@@ -1,0 +1,11 @@
+##fileformat=VCFv4.1							
+##fileDate=20220801							
+##source=/wynton/home/hernandez/shirondru/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/test/data_for_tests/AkitaPreds_by_KatieG/AkitaPreds_by_KatieG.tsv							
+##reference=/wynton/home/hernandez/shirondru/pollard_lab/data/hg38_genome.fa							
+#CHROM POS ID REF ALT QUAL FILTER INFO							
+CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+chr12	11625742		C	CA			
+chr18	72144815		ATAAG	A			
+chr21	23833812		G	A			
+chr8	78004260		C	T			
+chr8	10479106		C	T			

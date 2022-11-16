@@ -1,0 +1,1 @@
+Files with Enformer's predictions are not provided via GitHub because they are prohibitively large. Instead, they can be generated using the code in this repository, or accessed here: https://ucsf.box.com/s/uopnbwg6rpul9ba0s1wu15zq4u4cpmmg
