@@ -15,6 +15,7 @@ Usage:
 2. Clone repository containing Sei:
 	* https://github.com/FunctionLab/sei-framework
 	* Place this repository under ./models/Sei
+
 (OPTIONAL). Download Enformer:
 	Use either link:
 	* https://tfhub.dev/deepmind/enformer/1
