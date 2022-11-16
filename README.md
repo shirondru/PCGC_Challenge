@@ -16,7 +16,7 @@ Usage:
 	* https://github.com/FunctionLab/sei-framework
 	* Place this repository under ./models/Sei
 
-(OPTIONAL). Download Enformer:
+(OPTIONAL). Download Enformer: Only necessary if running code from a machine without internet access. Otherwise, Enformer can be loaded from tfhub.
 * Use either link:
 	* https://tfhub.dev/deepmind/enformer/1
 	* https://github.com/deepmind/deepmind-research/tree/master/enformer
