@@ -20,7 +20,7 @@ import pysam
 import matplotlib.pyplot as plt
 from cooltools.lib.numutils import set_diag
 import sys
-sys.path.append("./models/Akita/basenji")
+sys.path.append("../models/Akita/basenji")
 from basenji import dataset, dna_io, seqnn
 
 import cooler
@@ -66,7 +66,7 @@ print(f"Reference genome: {reference_genome}")
 assert reference_genome in ['hg38','hg19'], "Desired reference genome is not supported!"
 
 ### load params, specify model ###
-model_dir = '../models/Akita/basenji/manuscripts/akita'
+model_dir = '../models/Akita/basenji/manuscripts/akita/'
 params_file = model_dir+'params.json'
 model_file  = model_dir+'model_best.h5'
 with open(params_file) as params_open:
@@ -110,14 +110,14 @@ target_length1 = data_stats['seq_length'] // data_stats['pool_width']
 
 
 if reference_genome == 'hg38':
-  fasta_file = './models/hg38_genome.fa'
+  fasta_file = '../models/hg38_genome.fa'
   if not os.path.exists(fasta_file):
     !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip -c > {fasta_file}
     pyfaidx.Faidx(fasta_file)
 elif reference_genome == 'hg19':
-  fasta_file = './PCGC_Challenge/models/hg19_genome.fa'
+  fasta_file = '../models/hg19_genome.fa'
   if not os.path.exists(fasta_file):
-    !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip -c > {fasta_file}
+    !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz | gunzip -c > {fasta_file}
     pyfaidx.Faidx(fasta_file)
 
 
@@ -304,13 +304,11 @@ for idx, example in enumerate(it):
     
 
 max_df = pd.DataFrame(maxed_scores_list)
-max_df.to_csv(f"{output_dir}/Akita_max_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",index=False,header=True)
-maxed_scores_list = []
+max_df.to_csv(f"{output_dir}/Akita_max_predictions_{vcf_basename}.csv",index=False,header=True)
 
 
 msd_df = pd.DataFrame(msd_scores_list)
-msd_df.to_csv(f"{output_dir}/Akita_msd_predictions_PsychENCODEGWASLeadTagVariants_{vcf_basename}.csv",index=False,header=True)
-msd_scores_list = []
+msd_df.to_csv(f"{output_dir}/Akita_msd_predictions_{vcf_basename}.csv",index=False,header=True)
 
 
 

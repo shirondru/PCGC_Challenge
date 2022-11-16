@@ -52,14 +52,14 @@ model_path = 'https://tfhub.dev/deepmind/enformer/1'
 
 
 if reference_genome == 'hg38':
-  fasta_file = './models/hg38_genome.fa'
+  fasta_file = '../models/hg38_genome.fa'
   if not os.path.exists(fasta_file):
     !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip -c > {fasta_file}
     pyfaidx.Faidx(fasta_file)
 elif reference_genome == 'hg19':
-  fasta_file = './PCGC_Challenge/models/hg19_genome.fa'
+  fasta_file = '../models/hg19_genome.fa'
   if not os.path.exists(fasta_file):
-    !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip -c > {fasta_file}
+    !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz | gunzip -c > {fasta_file}
     pyfaidx.Faidx(fasta_file)
 
 
