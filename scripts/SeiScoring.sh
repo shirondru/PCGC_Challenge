@@ -1,5 +1,5 @@
-reference_genome=$1 #either hg19 or hg38
-vcf_path=$2
+vcf_path=$1
+reference_genome=$2 #either hg19 or hg38
 experiment_name=$3
 vcf_basename=$(echo $vcf_path | rev | cut -d'/' -f 1 | rev | cut -d'.' -f1) #name of vcf file, minus ".vcf"
 top_level_dir=$(git rev-parse --show-toplevel)
