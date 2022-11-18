@@ -15,10 +15,10 @@ elif [[ $reference_genome = 'hg19' ]]; then
 fi
 
 #run Enformer and re-route stderr and stdout
-python3 $top_level_dir/scripts/EnformerScoring.py $akita_enformer_vcf_path $reference_genome $experiment_name 1>>$top_level_dir/model_outputs/Enformer/$experiment_name/log.o 2>>$top_level_dir/model_outputs/Enformer/$experiment_name/log.e
+python3 $top_level_dir/scripts/EnformerScoring.py --vcf_path $akita_enformer_vcf_path --reference_genome $reference_genome --experiment_name $experiment_name 1>>$top_level_dir/model_outputs/Enformer/$experiment_name/log.o 2>>$top_level_dir/model_outputs/Enformer/$experiment_name/log.e
 
 #run Akita and re-route stderr and stdout
-python3 $top_level_dir/scripts/AkitaScoring.py $akita_enformer_vcf_path $reference_genome $experiment_name 1>>$top_level_dir/model_outputs/Akita/$experiment_name/log.o 2>>$top_level_dir/model_outputs/Akita/$experiment_name/log.e
+python3 $top_level_dir/scripts/AkitaScoring.py --vcf_path $akita_enformer_vcf_path --reference_genome $reference_genome --experiment_name $experiment_name 1>>$top_level_dir/model_outputs/Akita/$experiment_name/log.o 2>>$top_level_dir/model_outputs/Akita/$experiment_name/log.e
 
 #run Sei. Sei Script re-routes stderr and stdout already
 sh $top_level_dir/scripts/SeiScoring.sh $sei_vcf_path $reference_genome $experiment_name 
