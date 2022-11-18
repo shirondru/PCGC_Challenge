@@ -234,7 +234,7 @@ fasta_extractor = FastaStringExtractor(fasta_file)
 
 #take vvariants and get model(alt) - model(ref) predictions
 #take sum or max along sequence axis to get variant score for each track. Save these scores + variant position and allele metadata
-output_dir = f"{git_repo}/model_outputs/Enformer/{experiment_name}"
+output_dir = f"{git_root}/model_outputs/Enformer/{experiment_name}"
 if not os.path.exists(output_dir):
   os.mkdir(output_dir)
 vcf_basename = vcf_path.split('/')[-1]
