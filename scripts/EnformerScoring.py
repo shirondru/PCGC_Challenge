@@ -48,15 +48,15 @@ experiment_name = str(args.experiment_name)
 reference_genome = str(args.reference_genome)
 reference_genome = reference_genome.lower()
 assert reference_genome in ['hg38','hg19'], "Desired reference genome is not supported!"
+#get top level directory of the git repository:
+git_repo = git.Repo(os.getcwd(), search_parent_directories=True)
+git_root = git_repo.git.rev_parse("--show-toplevel") #this is path/to/PCGC_Challenge
 fasta_file = f'{git_root}/models/{reference_genome}_genome.fa'
 
 model_path = 'https://tfhub.dev/deepmind/enformer/1'
 
 
-#get top level directory of the git repository:
-git_repo = git.Repo(os.getcwd(), search_parent_directories=True)
-git_root = git_repo.git.rev_parse("--show-toplevel") #this is path/to/PCGC_Challenge
- 
+
 
 
 
