@@ -54,7 +54,7 @@ model_path = 'https://tfhub.dev/deepmind/enformer/1'
 
 
 #get top level directory of the git repository:
-git_repo = git.Repo(path, search_parent_directories=True)
+git_repo = git.Repo(os.getcwd(), search_parent_directories=True)
 git_root = git_repo.git.rev_parse("--show-toplevel") #this is path/to/PCGC_Challenge
  
 

@@ -24,11 +24,11 @@ import sys
 
 import git
 #get top level directory of the git repository:
-git_repo = git.Repo(path, search_parent_directories=True)
+git_repo = git.Repo(os.getcwd(), search_parent_directories=True)
 git_root = git_repo.git.rev_parse("--show-toplevel") #this is path/to/PCGC_Challenge
 
 
-sys.path.append("{git_root}/models/Akita/basenji")
+sys.path.append(f"{git_root}/models/Akita/basenji")
 from basenji import dataset, dna_io, seqnn
 
 import cooler
