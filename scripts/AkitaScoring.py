@@ -20,7 +20,15 @@ import pysam
 import matplotlib.pyplot as plt
 from cooltools.lib.numutils import set_diag
 import sys
-sys.path.append("../models/Akita/basenji")
+
+
+import git
+#get top level directory of the git repository:
+git_repo = git.Repo(path, search_parent_directories=True)
+git_root = git_repo.git.rev_parse("--show-toplevel") #this is path/to/PCGC_Challenge
+
+
+sys.path.append("{git_root}/models/Akita/basenji")
 from basenji import dataset, dna_io, seqnn
 
 import cooler
@@ -40,6 +48,7 @@ from collections import Counter
 import argparse
 import sys
 from pathlib import Path
+
 
 # for GPUs
 # print(device_lib.list_local_devices())
@@ -65,8 +74,12 @@ reference_genome = reference_genome.lower()
 print(f"Reference genome: {reference_genome}")
 assert reference_genome in ['hg38','hg19'], "Desired reference genome is not supported!"
 
+
+
+
+
 ### load params, specify model ###
-model_dir = '../models/Akita/basenji/manuscripts/akita/'
+model_dir = f'{git_root}/models/Akita/basenji/manuscripts/akita/'
 params_file = model_dir+'params.json'
 model_file  = model_dir+'model_best.h5'
 with open(params_file) as params_open:
@@ -110,12 +123,12 @@ target_length1 = data_stats['seq_length'] // data_stats['pool_width']
 
 
 if reference_genome == 'hg38':
-  fasta_file = '../models/hg38_genome.fa'
+  fasta_file = f'{git_root}/models/hg38_genome.fa'
   if not os.path.exists(fasta_file):
     !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip -c > {fasta_file}
     pyfaidx.Faidx(fasta_file)
 elif reference_genome == 'hg19':
-  fasta_file = '../models/hg19_genome.fa'
+  fasta_file = f'{git_root}/models/hg19_genome.fa'
   if not os.path.exists(fasta_file):
     !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz | gunzip -c > {fasta_file}
     pyfaidx.Faidx(fasta_file)
@@ -276,7 +289,7 @@ def max_diff(alternate_prediction, reference_prediction):
 # In[7]:
 #take vvariants and get model(alt) - model(ref) predictions
 #take MSD or max along sequence axis to get variant score for each track. Save these scores + variant position and allele metadata
-output_dir = f"../model_outputs/Akita/{experiment_name}"
+output_dir = f"{git_root}/model_outputs/Akita/{experiment_name}"
 if not os.path.exists(output_dir):
   os.mkdir(output_dir)
 vcf_basename = vcf_path.split('/')[-1]

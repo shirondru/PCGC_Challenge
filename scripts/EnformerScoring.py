@@ -26,6 +26,7 @@ import datetime
 import shutil
 from pathlib import Path
 from tensorflow.python.client import device_lib
+import git
 
 
 ## For using GPU
@@ -51,13 +52,19 @@ assert reference_genome in ['hg38','hg19'], "Desired reference genome is not sup
 model_path = 'https://tfhub.dev/deepmind/enformer/1'
 
 
+#get top level directory of the git repository:
+git_repo = git.Repo(path, search_parent_directories=True)
+git_root = git_repo.git.rev_parse("--show-toplevel") #this is path/to/PCGC_Challenge
+ 
+
+
 if reference_genome == 'hg38':
-  fasta_file = '../models/hg38_genome.fa'
+  fasta_file = f'{git_repo}/models/hg38_genome.fa'
   if not os.path.exists(fasta_file):
     !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip -c > {fasta_file}
     pyfaidx.Faidx(fasta_file)
 elif reference_genome == 'hg19':
-  fasta_file = '../models/hg19_genome.fa'
+  fasta_file = {f'{git_repo}/models/hg19_genome.fa'
   if not os.path.exists(fasta_file):
     !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz | gunzip -c > {fasta_file}
     pyfaidx.Faidx(fasta_file)
@@ -236,7 +243,7 @@ fasta_extractor = FastaStringExtractor(fasta_file)
 
 #take vvariants and get model(alt) - model(ref) predictions
 #take sum or max along sequence axis to get variant score for each track. Save these scores + variant position and allele metadata
-output_dir = f"../model_outputs/Enformer/{experiment_name}"
+output_dir = f"{git_repo}/model_outputs/Enformer/{experiment_name}"
 if not os.path.exists(output_dir):
   os.mkdir(output_dir)
 vcf_basename = vcf_path.split('/')[-1]
