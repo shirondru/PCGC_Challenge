@@ -48,6 +48,7 @@ experiment_name = str(args.experiment_name)
 reference_genome = str(args.reference_genome)
 reference_genome = reference_genome.lower()
 assert reference_genome in ['hg38','hg19'], "Desired reference genome is not supported!"
+fasta_file = f'{git_root}/models/{reference_genome}_genome.fa'
 
 model_path = 'https://tfhub.dev/deepmind/enformer/1'
 
@@ -58,16 +59,6 @@ git_root = git_repo.git.rev_parse("--show-toplevel") #this is path/to/PCGC_Chall
  
 
 
-if reference_genome == 'hg38':
-  fasta_file = f'{git_repo}/models/hg38_genome.fa'
-  if not os.path.exists(fasta_file):
-    !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip -c > {fasta_file}
-    pyfaidx.Faidx(fasta_file)
-elif reference_genome == 'hg19':
-  fasta_file = {f'{git_repo}/models/hg19_genome.fa'
-  if not os.path.exists(fasta_file):
-    !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz | gunzip -c > {fasta_file}
-    pyfaidx.Faidx(fasta_file)
 
 
 

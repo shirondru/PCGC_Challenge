@@ -4,7 +4,7 @@
 Models include Akita, Sei, an Enformer
 
 
-Usage:
+Requirements:
 1. Clone repository containing Akita:
 
 	``` 
@@ -26,6 +26,21 @@ Usage:
 	* https://tfhub.dev/deepmind/enformer/1
 	* https://github.com/deepmind/deepmind-research/tree/master/enformer
 
+
+
+Usage:
+```
+reference_genome=hg38 #either hg38 or hg19
+experiment_name=test #your choice. This will help determine the names of output files
+top_level_dir=$(git rev-parse --show-toplevel) #path for top level of this repo
+akita_enformer_vcf_paths=$top_level_dir/DNVs/example.vcf #path to vcf file formatted for input into Akita/Enformer
+sei_vcf_paths=$top_level_dir/DNVs/example_sei.vcf #path to vcf file formatted for input into Sei. Contains same variants as akita_enformer_vcf_paths
+
+## run models
+sh $top_level_dir/scripts/run_models.sh $reference_genome $akita_enformer_vcf_paths $sei_vcf_paths $experiment_name 
+
+
+```
 
 
 

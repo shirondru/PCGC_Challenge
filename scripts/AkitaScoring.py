@@ -74,7 +74,7 @@ reference_genome = reference_genome.lower()
 print(f"Reference genome: {reference_genome}")
 assert reference_genome in ['hg38','hg19'], "Desired reference genome is not supported!"
 
-
+fasta_file = f'{git_root}/models/{reference_genome}_genome.fa'
 
 
 
@@ -120,19 +120,6 @@ target_length = data_stats['target_length']
 hic_diags =  data_stats['diagonal_offset']
 target_crop = data_stats['crop_bp'] // data_stats['pool_width']
 target_length1 = data_stats['seq_length'] // data_stats['pool_width']
-
-
-if reference_genome == 'hg38':
-  fasta_file = f'{git_root}/models/hg38_genome.fa'
-  if not os.path.exists(fasta_file):
-    !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip -c > {fasta_file}
-    pyfaidx.Faidx(fasta_file)
-elif reference_genome == 'hg19':
-  fasta_file = f'{git_root}/models/hg19_genome.fa'
-  if not os.path.exists(fasta_file):
-    !wget -O - http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz | gunzip -c > {fasta_file}
-    pyfaidx.Faidx(fasta_file)
-
 
 
 ### for converting from flattened upper-triangluar vector to symmetric matrix  ###
