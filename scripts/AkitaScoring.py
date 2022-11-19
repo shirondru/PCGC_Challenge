@@ -73,7 +73,6 @@ reference_genome = str(args.reference_genome)
 reference_genome = reference_genome.lower()
 print(f"Reference genome: {reference_genome}")
 assert reference_genome in ['hg38','hg19'], "Desired reference genome is not supported!"
-
 fasta_file = f'{git_root}/models/{reference_genome}_genome.fa'
 
 
@@ -90,9 +89,6 @@ with open(params_file) as params_open:
 seqnn_model = seqnn.SeqNN(params_model)
 
 
-# In[3]:
-
-
 ### restore model ###
 # note: run %%bash get_model.sh 
 # if you have not already downloaded the model
@@ -100,10 +96,9 @@ seqnn_model.restore(model_file)
 print('successfully loaded')
 
 
-# In[4]:
 
 
-### names of targets ###
+### load more Akita info to targets ###
 data_dir =  os.path.join(model_dir,"data")
 
 hic_targets = pd.read_csv(data_dir+'/targets.txt',sep='\t')
@@ -122,54 +117,8 @@ target_crop = data_stats['crop_bp'] // data_stats['pool_width']
 target_length1 = data_stats['seq_length'] // data_stats['pool_width']
 
 
-### for converting from flattened upper-triangluar vector to symmetric matrix  ###
-
-def from_upper_triu(vector_repr, matrix_len, num_diags):
-    z = np.zeros((matrix_len,matrix_len))
-    triu_tup = np.triu_indices(matrix_len,num_diags)
-    z[triu_tup] = vector_repr
-    for i in range(-num_diags+1,num_diags):
-        set_diag(z, np.nan, i)
-    return z + z.T
-
-
-def preprocess_from_cool(myseq_str, genome_hic_cool):
-    print("Seq-str: ", myseq_str)
-    num_counts= np.sum(genome_hic_cool.matrix(balance=False).fetch(myseq_str))
-    seq_hic_obs = genome_hic_cool.matrix(balance=True).fetch(myseq_str)
-    seq_hic_smoothed =  adaptive_coarsegrain(
-                     seq_hic_obs,  
-                     genome_hic_cool.matrix(balance=False).fetch(myseq_str),  
-                     cutoff=3, max_levels=8)
-    seq_hic_nan = np.isnan(seq_hic_smoothed)
-    seq_hic_obsexp = observed_over_expected(seq_hic_smoothed, ~seq_hic_nan)[0]
-    seq_hic_obsexp = np.log(seq_hic_obsexp)
-    seq_hic_obsexp = np.clip(seq_hic_obsexp,-2,2)
-    seq_hic_obsexp_init = np.copy(seq_hic_obsexp)
-    seq_hic_obsexp = interp_nan(seq_hic_obsexp)
-    seq_hic_obsexp = np.nan_to_num(seq_hic_obsexp)
-    seq_hic = np.clip(seq_hic_obsexp,-2,2)
-    for i in [-1,0,1]: set_diag(seq_hic, 0,i)
-        
-    from astropy.convolution import Gaussian2DKernel
-    from astropy.convolution import convolve
-    kernel = Gaussian2DKernel(x_stddev=1,x_size=5)
-
-    seq_hic = convolve(seq_hic, kernel)
-    return seq_hic, num_counts, seq_hic_obs
-
-
-def get_expt(region_chr, region_start, region_stop):
-    myseq_str = "{}:{}-{}".format(region_chr, region_start, region_stop)
-    expt, num_counts, expt_obs = preprocess_from_cool(myseq_str, genome_hic_cool)
-    new_start = int((target_length - target_length_cropped)/2)
-    new_end = int(target_length-new_start)
-    expt = expt[new_start:target_length-new_start, new_start:target_length-new_start]
-    return(expt)
-
-
-# @title `variant_centered_sequences`
-
+#for parsing the reference genome, in order to find the DNA nucleotides that flank each variant
+#these flanking nucleotides will be used to form a sequence of the expected length for input into Akita, with the variant at the center
 class FastaStringExtractor:
     
     def __init__(self, fasta_file):
@@ -196,6 +145,7 @@ class FastaStringExtractor:
         return self.fasta.close()
 
 
+#for parsing VCF file, and then scoring each variant one by one
 def variant_generator(vcf_file, gzipped=False):
   """Yields a kipoiseq.dataclasses.Variant for each row in VCF file."""
   def _open(file):
@@ -215,7 +165,7 @@ def variant_generator(vcf_file, gzipped=False):
 def one_hot_encode(sequence):
   return kipoiseq.transforms.functional.one_hot_dna(sequence).astype(np.float32)
 
-
+#N's might be added to pad the input sequence. Akita's output will tell you if that was the case for any variant so you know.
 def get_N_composition(seq: str):
     """
     Get % of N's in input sequence
@@ -234,6 +184,8 @@ def get_N_composition(seq: str):
     else:
         return 0 
 
+#calls the variant_generator, converts each variant to a DNA sequence of the expected length with the variant at the center, 
+#and one hot encodes that sequence. This is done to the reference allele and alternate allele. This will be passed into akita to form predictions
 def variant_centered_sequences(vcf_file, sequence_length, gzipped=False,
                                chr_prefix=''):
   seq_extractor = kipoiseq.extractors.VariantSeqExtractor(
@@ -274,7 +226,7 @@ def max_diff(alternate_prediction, reference_prediction):
 
 
 # In[7]:
-#take vvariants and get model(alt) - model(ref) predictions
+#take variants and get model(alt) - model(ref) predictions
 #take MSD or max along sequence axis to get variant score for each track. Save these scores + variant position and allele metadata
 output_dir = f"{git_root}/model_outputs/Akita/{experiment_name}"
 if not os.path.exists(output_dir):
@@ -284,6 +236,9 @@ it = variant_centered_sequences(vcf_path, sequence_length=seq_length,
                             gzipped=False, chr_prefix='')
 msd_scores_list = []
 maxed_scores_list = []
+#loop through each variant in the VCF file, form akita predictions for each allele of each variant, and score the mean-squared and max differences 
+# between each allele, in each of Akita's 5 predicted cell types. Save results for each variant in two different dataframes (one per scoring method). 
+# Each dataframe also contains metadata about the variant position (from the original VCF) and % of N's in the input sequence.
 for idx, example in enumerate(it):
     reference_prediction = seqnn_model.model.predict({k: np.expand_dims(v,0) for k,v in example['inputs'].items()}['ref'])
     alternate_prediction = seqnn_model.model.predict({k: np.expand_dims(v,0) for k,v in example['inputs'].items()}['alt'])
