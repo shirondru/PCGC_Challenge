@@ -37,7 +37,7 @@ import git
 
 
 
-parser = argparse.ArgumentParser(description='Run Enformer on variants associated with diseases (via the GWAS catalog) relevant to the PsychENCODE project.', prog='EnformerPsychENCODE_GWAS_predictions.py')
+parser = argparse.ArgumentParser(description='Run Enformer to score variants.', prog='EnformerScoring.py')
 parser.add_argument('--vcf_path', required=True, type=str,  help='Full path to the vcf file containing the mutations to be run by Enformer')
 parser.add_argument('--reference_genome', required=True, type=str,  help='Either hg38 or hg19')
 parser.add_argument('--experiment_name', required=True, type=str,  help='Name of the experiment')
