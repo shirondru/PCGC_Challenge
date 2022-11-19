@@ -53,12 +53,7 @@ git_repo = git.Repo(os.getcwd(), search_parent_directories=True)
 git_root = git_repo.git.rev_parse("--show-toplevel") #this is path/to/PCGC_Challenge
 fasta_file = f'{git_root}/models/{reference_genome}_genome.fa'
 
-model_path = 'https://tfhub.dev/deepmind/enformer/1'
-
-
-
-
-
+model_path = 'https://tfhub.dev/deepmind/enformer/1' #path to Enformer. If running on a machine with no internet access, download Enformer directly and replace path
 
 
 
@@ -69,7 +64,7 @@ df_targets = pd.read_csv(targets_txt, sep='\t')
 
 
 
-# @title `Enformer`, `EnformerScoreVariantsNormalized`, `EnformerScoreVariantsPCANormalized`,
+# @title `Enformer`
 SEQUENCE_LENGTH = 393216
 
 class Enformer:
@@ -81,75 +76,10 @@ class Enformer:
     predictions = self._model.predict_on_batch(inputs)
     return {k: v.numpy() for k, v in predictions.items()}
 
-  @tf.function
-  def contribution_input_grad(self, input_sequence,
-                              target_mask, output_head='human'):
-    input_sequence = input_sequence[tf.newaxis]
-
-    target_mask_mass = tf.reduce_sum(target_mask)
-    with tf.GradientTape() as tape:
-      tape.watch(input_sequence)
-      prediction = tf.reduce_sum(
-          target_mask[tf.newaxis] *
-          self._model.predict_on_batch(input_sequence)[output_head]) / target_mask_mass
-
-    input_grad = tape.gradient(prediction, input_sequence) * input_sequence
-    input_grad = tf.squeeze(input_grad, axis=0)
-    return tf.reduce_sum(input_grad, axis=-1)
-
-
-class EnformerScoreVariantsRaw:
-
-  def __init__(self, tfhub_url, organism='human'):
-    self._model = Enformer(tfhub_url)
-    self._organism = organism
-  
-  def predict_on_batch(self, inputs):
-    ref_prediction = self._model.predict_on_batch(inputs['ref'])[self._organism]
-    alt_prediction = self._model.predict_on_batch(inputs['alt'])[self._organism]
-
-    return alt_prediction.mean(axis=1) - ref_prediction.mean(axis=1)
-
-
-class EnformerScoreVariantsNormalized:
-
-  def __init__(self, tfhub_url, transform_pkl_path,
-               organism='human'):
-    assert organism == 'human', 'Transforms only compatible with organism=human'
-    self._model = EnformerScoreVariantsRaw(tfhub_url, organism)
-    with tf.io.gfile.GFile(transform_pkl_path, 'rb') as f:
-      transform_pipeline = joblib.load(f)
-    self._transform = transform_pipeline.steps[0][1]  # StandardScaler.
-    
-  def predict_on_batch(self, inputs):
-    scores = self._model.predict_on_batch(inputs)
-    return self._transform.transform(scores)
-
-
-class EnformerScoreVariantsPCANormalized:
-
-  def __init__(self, tfhub_url, transform_pkl_path,
-               organism='human', num_top_features=500):
-    self._model = EnformerScoreVariantsRaw(tfhub_url, organism)
-    with tf.io.gfile.GFile(transform_pkl_path, 'rb') as f:
-      self._transform = joblib.load(f)
-    self._num_top_features = num_top_features
-    
-  def predict_on_batch(self, inputs):
-    scores = self._model.predict_on_batch(inputs)
-    return self._transform.transform(scores)[:, :self._num_top_features]
-
-
-# TODO(avsec): Add feature description: Either PCX, or full names.
-
-
-# In[51]:
-
 
 # @title `variant_centered_sequences`
-
-# @title `variant_centered_sequences`
-
+#for parsing the reference genome, in order to find the DNA nucleotides that flank each variant
+#these flanking nucleotides will be used to form a sequence of the expected length for input into Enformer, with the variant at the center
 class FastaStringExtractor:
     
     def __init__(self, fasta_file):
@@ -175,7 +105,7 @@ class FastaStringExtractor:
     def close(self):
         return self.fasta.close()
 
-
+#for parsing VCF file, and then scoring each variant one by one
 def variant_generator(vcf_file, gzipped=False,skip_lines = 0,max_lines = np.inf):
   """Yields a kipoiseq.dataclasses.Variant for each row in VCF file."""
   def _open(file):
@@ -199,7 +129,8 @@ def variant_generator(vcf_file, gzipped=False,skip_lines = 0,max_lines = np.inf)
 def one_hot_encode(sequence):
   return kipoiseq.transforms.functional.one_hot_dna(sequence).astype(np.float32)
 
-
+#calls the variant_generator, converts each variant to a DNA sequence of the expected length with the variant at the center, 
+#and one hot encodes that sequence. This is done to the reference allele and alternate allele. This will be passed into Enformer to form predictions
 def variant_centered_sequences(vcf_file, sequence_length, gzipped=False,
                                chr_prefix=''):
   seq_extractor = kipoiseq.extractors.VariantSeqExtractor(
@@ -243,6 +174,9 @@ it = variant_centered_sequences(vcf_path, sequence_length=SEQUENCE_LENGTH,
                             gzipped=False, chr_prefix='')
 summed_scores_list = []
 maxed_scores_list = []
+#loop through each variant in the VCF file, form Enformer predictions for each allele of each variant, and score the summed and max differences 
+# between each allele, in each of Enformer's 5,313 human genomic profiles. Save results for each variant in two different dataframes (one per scoring method). 
+# Each dataframe also contains metadata about the variant position (from the original VCF) and % of N's in the input sequence.
 for idx, example in enumerate(it):
   reference_prediction = model.predict_on_batch({k: v[tf.newaxis] for k,v in example['inputs'].items()}['ref'])['human'][0]
   alternate_prediction = model.predict_on_batch({k: v[tf.newaxis] for k,v in example['inputs'].items()}['alt'])['human'][0]
