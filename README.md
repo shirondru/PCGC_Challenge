@@ -29,6 +29,10 @@ Requirements:
 
 
 Usage:
+* Define reference genome (either hg38 or hg19)
+* Define the name of the experiment, so output files are recognizable
+* Define path to the vcf files containing the variants to be scored. Files must be in VCF format. Two VCF files are required per set of variants. One with the header removed, for compatibility with Sei, and one with the header intact, for compatibility with the parser used for Akita and Sei.
+* Run script that scores the variants with the three models.
 ```
 reference_genome=hg38 #either hg38 or hg19
 experiment_name=test #your choice. This will help determine the names of output files
