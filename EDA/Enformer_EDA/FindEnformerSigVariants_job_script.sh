@@ -8,6 +8,7 @@
 #$ -l h_rt=133:00:00                
                                    
 . /pollard/data/projects/sdrusinsky/pollard_lab/variant_modeling/bin/activate
+top_level_dir=$(git rev-parse --show-toplevel)
 
 var_type=$1
 shift
@@ -41,13 +42,13 @@ echo $task_disease
 
 if [ "$var_type" == "GWAS" ]; then 
 	echo Finding Sig GWAS SNPs 
-	python3 /pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Enformer_EDA/FindEnformerSigVariants.py --scoring_system $scoring_system --relevant_cols $relevant_cols --disease $task_disease
+	python3 $top_level_dir/EDA/Enformer_EDA/FindEnformerSigVariants.py --scoring_system $scoring_system --relevant_cols $relevant_cols --disease $task_disease
 
 fi
 
 if [ "$var_type" == "DNV" ]; then 
 	echo Finding Sig DNVs
-	python3 /pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Enformer_EDA/FindEnformerSigDNVs.py --scoring_system $scoring_system --relevant_cols $relevant_cols --disease $task_disease
+	python3 $top_level_dir/EDA/Enformer_EDA/FindEnformerSigDNVs.py --scoring_system $scoring_system --relevant_cols $relevant_cols --disease $task_disease
 fi
 
 

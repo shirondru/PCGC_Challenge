@@ -8,7 +8,7 @@
 #$ -l h_rt=133:00:00                
                                    
 . /pollard/data/projects/sdrusinsky/pollard_lab/variant_modeling/bin/activate #activate env
-
+top_level_dir=$(git rev-parse --show-toplevel)
 var_type=$1
 shift
 diseases=("$@") #save  arguments as an array
@@ -18,12 +18,12 @@ echo $task_disease
 
 if [ "$var_type" == "GWAS" ]; then 
 	echo Finding Sei Sig GWAS Variants
-	python3 /pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Sei_EDA/FindSeiSigVariants.py --disease $task_disease
+	python3 $top_level_dir/EDA/Sei_EDA/FindSeiSigVariants.py --disease $task_disease
 fi
 
 
 if [ "$var_type" == "DNV" ]; then 
 	echo Finding Sei Sig  DNVs
-	python3 /pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Sei_EDA/FindSeiSigDNVs.py --disease $task_disease
+	python3 $top_level_dir/EDA/Sei_EDA/FindSeiSigDNVs.py --disease $task_disease
 fi
 qstat -j $JOB_ID

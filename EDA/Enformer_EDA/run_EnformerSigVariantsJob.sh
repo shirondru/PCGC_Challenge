@@ -2,7 +2,8 @@
 
 . /pollard/data/projects/sdrusinsky/pollard_lab/variant_modeling/bin/activate #activate env
 
-job_script=/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Enformer_EDA/FindEnformerSigVariants_job_script.sh
+top_level_dir=$(git rev-parse --show-toplevel)
+job_script=$top_level_dir/EDA/Enformer_EDA/FindEnformerSigVariants_job_script.sh
 
 var_type=$1 #either DNV or GWAS. Case sensitive
 echo $var_type

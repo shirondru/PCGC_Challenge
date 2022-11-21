@@ -9,6 +9,7 @@
 ##$ -t 1-10                        
                                    
 . /pollard/data/projects/sdrusinsky/pollard_lab/variant_modeling/bin/activate
+top_level_dir=$(git rev-parse --show-toplevel)
 
 var_type=$1
 shift
@@ -37,12 +38,12 @@ fi
 
 if [ "$var_type" == "DNV" ]; then 
 	echo Finding Akita Sig DNVs
-	python3 /pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Akita_EDA/FindAkitaSigDNVs.py --scoring_system $scoring_system --disease $task_disease
+	python3 $top_level_dir/EDA/Akita_EDA/FindAkitaSigDNVs.py --scoring_system $scoring_system --disease $task_disease
 fi
 
 if [ "$var_type" == "GWAS" ]; then 
 	echo Finding Akita Sig GWAS Variants
-	python3 /pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Akita_EDA/FindAkitaSigVariants.py --scoring_system $scoring_system --disease $task_disease
+	python3 $top_level_dir/EDA/Akita_EDA/FindAkitaSigVariants.py --scoring_system $scoring_system --disease $task_disease
 fi 
 
 
