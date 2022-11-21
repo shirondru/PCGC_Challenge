@@ -9,40 +9,32 @@ from datetime import datetime
 import argparse
 import sys
 import shutil
+import git
+git_repo = git.Repo(os.getcwd(), search_parent_directories=True)
+git_root = git_repo.git.rev_parse("--show-toplevel") #this is path/to/PCGC_Challenge
 
-parser = argparse.ArgumentParser(description='Compare Sei predictions for PsychENCODE GWAS againts a null distribution to find extreme variants.', prog='FindSeiSigVariants.py')
-parser.add_argument('--disease', nargs = 1, required=True, type=str,  help='Name of disease(s) to score here')
+parser = argparse.ArgumentParser(description='Compare Sei predictions for variants againts a null distribution to find extreme variants.', prog='FindSeiSigDNVs.py')
+parser.add_argument('--experiment_name', required=True, type=str,  help='Name of experiment to find significant variants. This name should match the corresponding directory in git_root/model_outputs/Sei/')
 args = parser.parse_args()
-disease = args.disease #this should be just one disease
-print(disease)
-assert len(disease) == 1, "This code expects to only take 1 disease as input and parallelize them over many SGE array tasks!"
-disease = disease[0] #get the name of the disease out of the list
-print(disease)
-sys.stdout.flush()
+experiment_name = args.experiment_name 
 
-def get_file_birthtime(filename):
-    unix_timestamp = os.stat(filename).st_birthtime
-    file_birthdate = datetime.fromtimestamp(unix_timestamp)
-    year = file_birthdate.year
-    month = file_birthdate.month
-    day = file_birthdate.day
-    return f"{year}-{month}-{day}"
 
-#load sei sequence class scores for the disease
-sei_disease_dir = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/Sei/{disease}"
+
+#load sei sequence class scores for the experiment
+sei_disease_dir = f"{git_root}/model_outputs/Sei/{experiment_name}" #for the DNVs this should correspond to "{git_root}/model_outputs/Sei/CHD_DNVs_Richter2020"
 all_sei_scores = pd.DataFrame()
 for folder in os.listdir(sei_disease_dir):
     if folder.endswith('.vcf'): 
-        PsychENCODE_disease_sei_var_df = pd.read_csv(os.path.join(sei_disease_dir,folder,'sequence_class_scores.tsv'),sep = '\t')
-        PsychENCODE_disease_sei_var_df['disease'] = disease
-        all_sei_scores = all_sei_scores.append(PsychENCODE_disease_sei_var_df)
+        disease_sei_var_df = pd.read_csv(os.path.join(sei_disease_dir,folder,'sequence_class_scores.tsv'),sep = '\t')
+        disease_sei_var_df['disease'] = experiment_name
+        all_sei_scores = all_sei_scores.append(disease_sei_var_df)
 
 
 
 
 ##### load null distribution #####
 #null distribution 
-null_path = "/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/Sei/Rare1KGVariants"
+null_path = f"{git_root}/model_outputs/Sei/Rare1KGVariants" #this directory will be empty until populated with the Sei variant scores from https://ucsf.box.com/s/gqz9cg3ncj08svu3z5ij3w21xb83nlzw
 null_class_scores = pd.DataFrame()
 for subdir in os.listdir(null_path):
     if subdir.endswith('.vcf'):
@@ -79,13 +71,13 @@ def get_quantiles(threshold, null_distribution,score_cols):
 upper_percentiles, lower_percentiles = get_quantiles(0.999,null_class_scores,score_cols)
 
 
-def get_sig_variants(GWAS_variant_predictions,upper_percentiles,lower_percentiles,score_cols):
+def get_sig_variants(variant_predictions,upper_percentiles,lower_percentiles,score_cols):
 
     """
-    GWAS_variant_predictions: df with variant effect scores for each lead and tag SNP in the GWAS of interest
+    variant_predictions: df with variant effect scores for each alt and ref alleles of variants of interest
     upper_percentiles: Dictionary with upper threshold for each null distribution above which a variant effect is significant
     lower_percentiles: Dictionary with lower threshold for each null distribution below which a variant effect is significant
-    score_cols: columns in GWAS_variant_predictions corresponding to variant effect scores
+    score_cols: columns in variant_predictions corresponding to variant effect scores
     
     """
     
@@ -94,9 +86,9 @@ def get_sig_variants(GWAS_variant_predictions,upper_percentiles,lower_percentile
     variant_info = ['chrom','pos','ref','alt','disease']
     for score_col in score_cols:
         #append variants to df if they are more extreme than the upper or lower threshold
-        sig_variants = sig_variants.append(GWAS_variant_predictions[
-                                    (GWAS_variant_predictions[score_col] >= upper_percentiles[score_col]) | 
-                                    (GWAS_variant_predictions[score_col] <= lower_percentiles[score_col])][variant_info + [score_col]].copy())
+        sig_variants = sig_variants.append(variant_predictions[
+                                    (variant_predictions[score_col] >= upper_percentiles[score_col]) | 
+                                    (variant_predictions[score_col] <= lower_percentiles[score_col])][variant_info + [score_col]].copy())
 
     #group variants that are extreme against different null distributions back to the same row
     sig_variants = sig_variants.groupby(['chrom','pos','ref','alt']).max().reset_index()
@@ -105,17 +97,12 @@ def get_sig_variants(GWAS_variant_predictions,upper_percentiles,lower_percentile
 
 sig_variants = get_sig_variants(all_sei_scores,upper_percentiles,lower_percentiles,score_cols)
 
-filename = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Sei_EDA/SeiSig_{disease}_DNVs.csv"
-if os.path.exists(filename): #if there is already data, back it up before re-doing this analysis
-    #make backup of existing sig_variants
-    backup_dir = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Sei_EDA/backups/{disease}"
-    if not os.path.exists(backup_dir):
-        os.mkdir(backup_dir)
-    backup_path = os.path.join(backup_dir,f"SeiSig_{disease}_DNVs_{get_file_birthtime(filename)}.csv")
-    shutil.copy2(filename,backup_path)
-
+#save file containing sei sequence class scores for variant<>sequence class combinations that were significant relative to the null distribution. All other entries will be empty
+filename = f"{git_root}/EDA/Sei_EDA/SeiSig_{experiment_name}_DNVs.csv"
 sig_variants.to_csv(filename)
 
+
+## for variant<>sequence class combinations that were more extreme than expected under the null distribution, compute the exact p value. This was not done in the first step to save computation time
 def get_pvals(sig_variants,null_distribution,score_cols):
     """
     take variants already shown to be significant (to save computation time) and calculate p value for each
@@ -147,14 +134,6 @@ def get_pvals(sig_variants,null_distribution,score_cols):
 
 sig_variants_pval = get_pvals(sig_variants,null_class_scores,score_cols)
 
-filename = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Sei_EDA/SeiSigPVals_{disease}_DNVs.csv"
-if os.path.exists(filename): #if there is already data, back it up before re-doing this analysis
-    #make backup of existing sig_variants
-    backup_dir = f"/pollard/data/projects/sdrusinsky/pollard_lab/GWASPredictions/PsychENCODE_GWAS_Predictions/PsychENCODE_GWAS_scripts/EDA/PsychENCODE_Sei_EDA/backups/{disease}"
-    if not os.path.exists(backup_dir):
-        os.mkdir(backup_dir)
-    backup_path = os.path.join(backup_dir,f"SeiSigPVals_{disease}_DNVs_{get_file_birthtime(filename)}.csv")
-    shutil.copy2(filename,backup_path)
-
-
+#save file containing p values for variant<> sequence class combinations that were significant. All other entries will be empty
+filename = f"{git_root}/EDA/Sei_EDA//SeiSigPVals_{experiment_name}_DNVs.csv"
 sig_variants_pval.to_csv(filename)
