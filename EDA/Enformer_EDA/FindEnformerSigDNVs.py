@@ -47,8 +47,7 @@ relevant_cols = [x.lower() for x in relevant_cols] #coerce all strings to be low
 
 # Download targets from Basenji2 dataset 
 # Cite: Kelley et al Cross-species regulatory sequence activity prediction. PLoS Comput. Biol. 16, e1008050 (2020).
-targets_txt = 'https://raw.githubusercontent.com/calico/basenji/master/manuscripts/cross2020/targets_human.txt'
-df_targets = pd.read_csv(targets_txt, sep='\t')
+df_targets = pd.read_csv(f"{git_root}/EDA/Enformer_EDA/enformer_df_targets.csv", sep='\t')
 
 
 
