@@ -10,6 +10,10 @@ shift #shift all arguments to the left so you can retrieve the rest as an array
 diseases=("$@") #save diseases as an array
 total_num_tasks=$(echo "${diseases[@]}" | wc -w) #one task per disease
 
+if [[ ! -e $top_level_dir/logs ]]; then
+	mkdir logs
+fi
+
 qsub -cwd -t 1-$total_num_tasks -tc 10 -N SeiFindSigVariants $job_script $var_type ${diseases[*]}
 
 
@@ -17,4 +21,4 @@ qsub -cwd -t 1-$total_num_tasks -tc 10 -N SeiFindSigVariants $job_script $var_ty
 # Example command
 # diseases=(PTDS Autism)
 # var_type=DNV
-# sh run_SeiSigDNVsJob.sh $var_type ${diseases[*]}
+# sh run_SeiSigVariantsJob.sh $var_type ${diseases[*]}
