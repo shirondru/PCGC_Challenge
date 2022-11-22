@@ -14,7 +14,7 @@ if [[ ! -e $top_level_dir/logs ]]; then
 	mkdir logs
 fi
 
-qsub -cwd -t 1-$total_num_tasks -tc 10 -N SeiFindSigVariants $job_script $var_type ${diseases[*]}
+qsub -cwd -t 1-$total_num_tasks -tc 10 -N SeiFindSigVariants $job_script $var_type $top_level_dir ${diseases[*]} 
 
 
 

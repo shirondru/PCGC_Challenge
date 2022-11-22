@@ -8,8 +8,9 @@
 #$ -l h_rt=133:00:00                
                                    
 . /pollard/data/projects/sdrusinsky/pollard_lab/variant_modeling/bin/activate #activate env
-top_level_dir=$(git rev-parse --show-toplevel)
 var_type=$1
+shift
+top_level_dir=$1
 shift
 diseases=("$@") #save  arguments as an array
 echo $SGE_TASK_ID
