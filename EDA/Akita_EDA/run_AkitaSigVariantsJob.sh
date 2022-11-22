@@ -14,10 +14,10 @@ if [[ ! -d "$top_level_dir/EDA/Akita_EDA/logs" ]]; then
 	mkdir logs
 fi
 
-qsub -cwd -t 1-$total_num_tasks -tc 10 -N AkitaFindSigVariants $top_level_dir ${diseases[*]}
+qsub -cwd -t 1-$total_num_tasks -tc 10 -N AkitaFindSigVariants $job_script $top_level_dir ${diseases[*]}
 
 
 
 # example command:
 # diseases=(PTSD Autism)
-# sh run_AkitaSigVariantsJob.sh DNV ${diseases[*]}
+# sh run_AkitaSigVariantsJob.sh ${diseases[*]}
