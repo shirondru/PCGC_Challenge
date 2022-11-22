@@ -10,9 +10,10 @@
 . /pollard/data/projects/sdrusinsky/pollard_lab/variant_modeling/bin/activate
 top_level_dir=$(git rev-parse --show-toplevel)
 
-var_type=$1
-shift
+
 relevant_cols=$1
+shift
+top_level_dir=$1
 shift
 diseases=("$@") #save  arguments as an array
 
@@ -40,16 +41,8 @@ echo $scoring_system
 echo $relevant_cols
 echo $task_disease
 
-if [ "$var_type" == "GWAS" ]; then 
-	echo Finding Sig GWAS SNPs 
-	python3 $top_level_dir/EDA/Enformer_EDA/FindEnformerSigVariants.py --scoring_system $scoring_system --relevant_cols $relevant_cols --disease $task_disease
 
-fi
-
-if [ "$var_type" == "DNV" ]; then 
-	echo Finding Sig DNVs
-	python3 $top_level_dir/EDA/Enformer_EDA/FindEnformerSigDNVs.py --scoring_system $scoring_system --relevant_cols $relevant_cols --disease $task_disease
-fi
+python3 $top_level_dir/EDA/Enformer_EDA/FindEnformerSigDNVs.py --scoring_system $scoring_system --relevant_cols $relevant_cols --experiment_name $task_disease
 
 
 qstat -j $JOB_ID
