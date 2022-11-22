@@ -39,7 +39,7 @@ score_cols = ['0_HFF', '1_H1hESC', '2_GM12878', '3_IMR90','4_HCT116']
 
 
 ######## Load Akita variant scores for this experiment #######
-akita_dir = f"{git_root}/model_outputs/Akita/CHD_DNVs_Richter2020"
+akita_dir = f"{git_root}/model_outputs/Akita"
 disease_akita_scores = pd.DataFrame()
 disease_akita_path = os.path.join(akita_dir,experiment_name)
 for file in os.listdir(disease_akita_path):
