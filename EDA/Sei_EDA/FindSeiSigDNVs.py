@@ -72,6 +72,7 @@ def get_quantiles(threshold, null_distribution,score_cols):
     
 upper_percentiles, lower_percentiles = get_quantiles(0.999,null_class_scores,score_cols)
 
+print("done finding quantiles")
 
 def get_sig_variants(variant_predictions,upper_percentiles,lower_percentiles,score_cols):
 
@@ -103,6 +104,7 @@ sig_variants = get_sig_variants(all_sei_scores,upper_percentiles,lower_percentil
 filename = f"{git_root}/EDA/Sei_EDA/SeiSig_{experiment_name}_DNVs.csv"
 sig_variants.to_csv(filename)
 
+print("done finding sig variants")
 
 ## for variant<>sequence class combinations that were more extreme than expected under the null distribution, compute the exact p value. This was not done in the first step to save computation time
 def get_pvals(sig_variants,null_distribution,score_cols):
@@ -139,3 +141,5 @@ sig_variants_pval = get_pvals(sig_variants,null_class_scores,score_cols)
 #save file containing p values for variant<> sequence class combinations that were significant. All other entries will be empty
 filename = f"{git_root}/EDA/Sei_EDA/SeiSigPVals_{experiment_name}_DNVs.csv"
 sig_variants_pval.to_csv(filename)
+
+print("done calculating p values")
