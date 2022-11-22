@@ -19,6 +19,7 @@ args = parser.parse_args()
 experiment_name = args.experiment_name 
 git_root = args.git_root
 
+print(git_root)
 
 
 #load sei sequence class scores for the experiment
@@ -136,5 +137,5 @@ def get_pvals(sig_variants,null_distribution,score_cols):
 sig_variants_pval = get_pvals(sig_variants,null_class_scores,score_cols)
 
 #save file containing p values for variant<> sequence class combinations that were significant. All other entries will be empty
-filename = f"{git_root}/EDA/Sei_EDA//SeiSigPVals_{experiment_name}_DNVs.csv"
+filename = f"{git_root}/EDA/Sei_EDA/SeiSigPVals_{experiment_name}_DNVs.csv"
 sig_variants_pval.to_csv(filename)
