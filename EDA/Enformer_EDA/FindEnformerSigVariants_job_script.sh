@@ -42,7 +42,7 @@ echo $relevant_cols
 echo $task_disease
 
 
-python3 $top_level_dir/EDA/Enformer_EDA/FindEnformerSigDNVs.py --scoring_system $scoring_system --relevant_cols $relevant_cols --experiment_name $task_disease
+python3 $top_level_dir/EDA/Enformer_EDA/FindEnformerSigDNVs.py --scoring_system $scoring_system --relevant_cols $relevant_cols --experiment_name $task_disease --git_root $top_level_dir
 
 
 qstat -j $JOB_ID
