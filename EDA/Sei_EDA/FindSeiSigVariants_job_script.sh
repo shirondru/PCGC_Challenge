@@ -16,6 +16,6 @@ task_disease="${diseases[$SGE_TASK_ID - 1]}"
 echo $task_disease
 
 
-python3 $top_level_dir/EDA/Sei_EDA/FindSeiSigDNVs.py --experiment_name $experiment_name --git_root $top_level_dir
+python3 $top_level_dir/EDA/Sei_EDA/FindSeiSigDNVs.py --experiment_name $task_disease --git_root $top_level_dir
 
 qstat -j $JOB_ID
