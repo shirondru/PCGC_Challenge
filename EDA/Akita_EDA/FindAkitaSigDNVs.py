@@ -10,19 +10,18 @@ import argparse
 import shutil
 from datetime import date
 import sys
-import git
-git_repo = git.Repo(os.getcwd(), search_parent_directories=True)
-git_root = git_repo.git.rev_parse("--show-toplevel") #this is path/to/PCGC_Challenge
 
 
 
 parser = argparse.ArgumentParser(description='Compare Akita predictions for variants againts a null distribution to find extreme variants.', prog='FindAkitaDNVs.py')
 parser.add_argument('--scoring_system', required=True, type=str,  help='Either `msd` or `max`; one of two scoring systems used to calculate variant effect scores along a sequence')
 parser.add_argument('--experiment_name', required=True, type=str,  help='Name of experiment to find significant variants. This name should match the corresponding directory in git_root/model_outputs/Akita/')
+parser.add_argument('--git_root', required=True, type=str,  help='the path to the top level of the git repository. i.e., path/to/PCGC_Challenge')
 
 args = parser.parse_args()
 scoring_system = str(args.scoring_system) #either "msd" or "max"
 experiment_name = args.experiment_name 
+git_root = args.git_root
 
 
 

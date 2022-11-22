@@ -11,7 +11,7 @@
 . /pollard/data/projects/sdrusinsky/pollard_lab/variant_modeling/bin/activate
 top_level_dir=$(git rev-parse --show-toplevel)
 
-var_type=$1
+top_level_dir=$1
 shift
 diseases=("$@") #save  arguments as an array
 
@@ -36,15 +36,9 @@ if [ `expr  $SGE_TASK_ID % 2` != 0 ]; then
 	scoring_system=msd	
 fi
 
-if [ "$var_type" == "DNV" ]; then 
-	echo Finding Akita Sig DNVs
-	python3 $top_level_dir/EDA/Akita_EDA/FindAkitaSigDNVs.py --scoring_system $scoring_system --disease $task_disease
-fi
 
-if [ "$var_type" == "GWAS" ]; then 
-	echo Finding Akita Sig GWAS Variants
-	python3 $top_level_dir/EDA/Akita_EDA/FindAkitaSigVariants.py --scoring_system $scoring_system --disease $task_disease
-fi 
+python3 $top_level_dir/EDA/Akita_EDA/FindAkitaSigDNVs.py --scoring_system $scoring_system --experiment_name $task_disease --git_root $top_level_dir
+
 
 
 qstat -j $JOB_ID
