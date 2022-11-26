@@ -80,6 +80,7 @@ class Enformer:
 # @title `variant_centered_sequences`
 #for parsing the reference genome, in order to find the DNA nucleotides that flank each variant
 #these flanking nucleotides will be used to form a sequence of the expected length for input into Enformer, with the variant at the center
+# Code adapted from Avsec et al. 2021
 class FastaStringExtractor:
     
     def __init__(self, fasta_file):
@@ -177,6 +178,7 @@ maxed_scores_list = []
 #loop through each variant in the VCF file, form Enformer predictions for each allele of each variant, and score the summed and max differences 
 # between each allele, in each of Enformer's 5,313 human genomic profiles. Save results for each variant in two different dataframes (one per scoring method). 
 # Each dataframe also contains metadata about the variant position (from the original VCF) and % of N's in the input sequence.
+# Code adapted from Avsec et al. 2021
 for idx, example in enumerate(it):
   reference_prediction = model.predict_on_batch({k: v[tf.newaxis] for k,v in example['inputs'].items()}['ref'])['human'][0]
   alternate_prediction = model.predict_on_batch({k: v[tf.newaxis] for k,v in example['inputs'].items()}['alt'])['human'][0]

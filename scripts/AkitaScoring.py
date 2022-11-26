@@ -119,6 +119,7 @@ target_length1 = data_stats['seq_length'] // data_stats['pool_width']
 
 #for parsing the reference genome, in order to find the DNA nucleotides that flank each variant
 #these flanking nucleotides will be used to form a sequence of the expected length for input into Akita, with the variant at the center
+# Code adapted from Avsec et al. 2021.
 class FastaStringExtractor:
     
     def __init__(self, fasta_file):
@@ -228,6 +229,7 @@ def max_diff(alternate_prediction, reference_prediction):
 # In[7]:
 #take variants and get model(alt) - model(ref) predictions
 #take MSD or max along sequence axis to get variant score for each track. Save these scores + variant position and allele metadata
+#Code adapted from Avsec et al. 2021
 output_dir = f"{git_root}/model_outputs/Akita/{experiment_name}"
 if not os.path.exists(output_dir):
   os.mkdir(output_dir)
