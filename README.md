@@ -46,8 +46,48 @@ sh $top_level_dir/scripts/run_models.sh $reference_genome $akita_enformer_vcf_pa
 
 ```
 
+Next, find which genomic profiles from each model were more extreme than expected under the null hypothesis of random rare variants:
+* run ./EDA/Akita_EDA/FindAkitaSigDNVs.py
+* run ./EDA/Sei_EDA/FindSeiSigDNVs.py
+* run ./EDA/Enformer_EDA/FindEnformerSigDNVs.py
+```
+top_level_dir=$(git rev-parse --show-toplevel) #path for top level of this repo
+experiment_name=test #this must match the experiment name from above, to ensure variant scores from the correct path will be used
+
+#### Find significant predictions from Akita ####
+scoring_system=msd #for variants scored using mean squared allelic difference
+python3 $top_level_dir/EDA/Akita_EDA/FindAkitaSigDNVs.py --scoring_system $scoring_system --experiment_name $experiment_name --git_root $top_level_dir
+
+scoring_system=max #for variants scored using maximum absolute allelic difference
+python3 $top_level_dir/EDA/Akita_EDA/FindAkitaSigDNVs.py --scoring_system $scoring_system --experiment_name $experiment_name --git_root $top_level_dir
+
+#### Find significant predictions from Enformer ####
+relevant_cols=HeartEnformerCols.txt #text file containing the Enformer tracks relevant to the Heart. Only these tracks will be tested for significance.
+
+scoring_system=summed #for variants scored using summed allelic difference
+python3 $top_level_dir/EDA/Enformer_EDA/FindEnformerSigDNVs.py --scoring_system $scoring_system --relevant_cols $relevant_cols --experiment_name $experiment_name --git_root $top_level_dir
+
+scoring_system=max #for variants scored using max absolute allelic difference
+python3 $top_level_dir/EDA/Enformer_EDA/FindEnformerSigDNVs.py --scoring_system $scoring_system --relevant_cols $relevant_cols --experiment_name $experiment_name --git_root $top_level_dir
+
+#### Find significant predictions from Sei ####
+python3 $top_level_dir/EDA/Sei_EDA/FindSeiSigDNVs.py --experiment_name $experiment_name --git_root $top_level_dir
+```
+This will yield two sets of files for each experiment and for each scoring system. One ({model_name}Sig_{experiment_name})includes the raw variant effect scores for only the significant genomic profiles for each variant. All other entries will be empty. The other file ({model_name}SigPVals_{experiment_name}) contains the p values for these significant genomic profiles. All other entires will be empty.
+
+Alternatively, an example SGE script is provided so this may be submitted as a job. This is recommended: 
+```
+top_level_dir=$(git rev-parse --show-toplevel)
+experiment_names=(test) #can include more than one experiment here if desired.
 
 
+sh $top_level_dir/EDA/Akita_EDA/Example_SGE_run_AkitaSigVariantsJob.sh ${experiment_names[*]} #This will find significant variants from Akita using both MSD and Max scoring systems
 
+relevant_cols=NeuroEnformerCols.txt
+sh $top_level_dir/EDA/Enformer_EDArun_EnformerSigVariantsJob.sh $relevant_cols ${experiment_names[*]} #This will find significant variants from Enformer using both Summed and Max scoring systems
+
+sh $top_level_dir/EDA/Sei_EDA/run_SeiSigVariantsJob.sh  ${experiment_names[*]} #This will find Sei significant variants.
+
+```
 
 
