@@ -20,4 +20,4 @@ qsub -cwd -t 1-$total_num_tasks -tc 10 -N AkitaFindSigVariants $job_script $top_
 
 # example command:
 # diseases=(PTSD Autism)
-# sh run_AkitaSigVariantsJob.sh ${diseases[*]}
+# sh Example_SGE_run_AkitaSigVariantsJob.sh ${diseases[*]}
