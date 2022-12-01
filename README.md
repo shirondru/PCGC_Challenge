@@ -90,4 +90,4 @@ sh $top_level_dir/EDA/Sei_EDA/run_SeiSigVariantsJob.sh  ${experiment_names[*]} #
 
 ```
 
-
+* Data visualizations of Akita and Enformer predictions for variant with extreme effects, and code to find variants with extreme predicted effects in all models, can be found in ./EDA/PCGC_EDA.ipynb
