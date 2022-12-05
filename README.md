@@ -4,7 +4,7 @@
 Models include Akita, Sei, an Enformer
 
 
-Requirements:
+### Requirements:
 1. Clone repository containing Akita:
 
 	``` 
@@ -39,7 +39,7 @@ Requirements:
 
 
 
-Usage:
+## Usage:
 * Define reference genome (either hg38 or hg19)
 * Define the name of the experiment, so output files are recognizable
 * Define path to the vcf files containing the variants to be scored. Files must be in VCF format. Two VCF files are required per set of variants. One with the header removed, for compatibility with Sei, and one with the header intact, for compatibility with the parser used for Akita and Sei.
@@ -88,7 +88,7 @@ This is a simple job script that submits run_models.sh as a job that uses CPUs. 
 
 
 
-Next, find which genomic profiles from each model were more extreme than expected under the null hypothesis of random rare variants:
+#### Next, find which genomic profiles from each model were more extreme than expected under the null hypothesis of random rare variants:
 * run ./EDA/Akita_EDA/FindAkitaSigDNVs.py
 * run ./EDA/Sei_EDA/FindSeiSigDNVs.py
 * run ./EDA/Enformer_EDA/FindEnformerSigDNVs.py
@@ -126,9 +126,9 @@ experiment_names=(test) #can include more than one experiment here if desired.
 sh $top_level_dir/EDA/Akita_EDA/Example_SGE_run_AkitaSigVariantsJob.sh ${experiment_names[*]} #This will find significant variants from Akita using both MSD and Max scoring systems
 
 relevant_cols=NeuroEnformerCols.txt
-sh $top_level_dir/EDA/Enformer_EDArun_EnformerSigVariantsJob.sh $relevant_cols ${experiment_names[*]} #This will find significant variants from Enformer using both Summed and Max scoring systems
+sh $top_level_dir/EDA/Enformer_EDA/Example_SGE_run_EnformerSigVariantsJob.sh $relevant_cols ${experiment_names[*]} #This will find significant variants from Enformer using both Summed and Max scoring systems
 
-sh $top_level_dir/EDA/Sei_EDA/run_SeiSigVariantsJob.sh  ${experiment_names[*]} #This will find Sei significant variants.
+sh $top_level_dir/EDA/Sei_EDA/Example_SGE_run_SeiSigVariantsJob.sh  ${experiment_names[*]} #This will find Sei significant variants.
 
 ```
 
