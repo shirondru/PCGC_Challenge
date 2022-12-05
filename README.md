@@ -26,6 +26,17 @@ Requirements:
 	* https://tfhub.dev/deepmind/enformer/1
 	* https://github.com/deepmind/deepmind-research/tree/master/enformer
 
+3. Create a virtual environment
+	```
+	virtualenv -p python3 variant_modeling #create a virtual environment called variant_modeling
+	```
+4. Activate environment and install requirements
+	```
+	cd variant_modeling
+	. bin/activate
+	python3 -m pip install -r requirements.txt
+	```
+
 
 
 Usage:
@@ -45,6 +56,37 @@ sh $top_level_dir/scripts/run_models.sh $reference_genome $akita_enformer_vcf_pa
 
 
 ```
+
+However, you will probably need to use a cluster if scoring more than just a few variants, which complicates things as different clusters run differently. Here is an example of a script that could be used to submit a job using SGE (with CPUs, more code will need to be added to use GPUs):
+
+```
+#!/bin/bash
+
+top_level_dir=$(git rev-parse --show-toplevel) #path for top level of this repo
+
+
+#$ -o $top_level_dir/scripts/$JOB_ID.o #path to save stdout
+#$ -e $top_level_dir/scripts$JOB_ID.e #path to save stderr
+#$ -r y  # if job crashes, it should be restarted                                                        
+#$ -l mem_free=15G                 
+#$ -l scratch=15G                  
+#$ -l h_rt=24:00:00  #max 24hr run time           
+                                   
+. $top_level_dir/variant_modeling/bin/activate #activate environment
+
+
+
+reference_genome=hg38
+akita_enformer_vcf_paths=$top_level_dir/DNVs/example.vcf #path to vcf file formatted for input into Akita/Enformer
+sei_vcf_paths=$top_level_dir/DNVs/example_sei.vcf #path to vcf file formatted for input into Sei. Contains same variants as akita_enformer_vcf_paths
+experiment_name=test
+
+qsub -cwd $top_level_dir/scripts/run_models.sh $reference_genome $akita_enformer_vcf_paths $sei_vcf_paths $experiment_name #submit the job
+
+```
+This is a simple job script that submits run_models.sh as a job that uses CPUs. For faster jobs, you should consider using GPUs, if available. Additionally, you should consider parallelizing this task. For example, splitting each VCF file into multiple, smaller VCFs, and/or running separate jobs for Akita, Sei, and Enformer, instead of submitting run_models.sh (which sequentially scores varaints with each model in one job). The top of this script contains come parameters, including the path to output stdout/stderr, as well as the desired maximum memory, scratch, and CPU time alottment. These should be changed depending on the size of the job being submitted.
+
+
 
 Next, find which genomic profiles from each model were more extreme than expected under the null hypothesis of random rare variants:
 * run ./EDA/Akita_EDA/FindAkitaSigDNVs.py
