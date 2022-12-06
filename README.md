@@ -21,7 +21,7 @@ Models include Akita, Sei, an Enformer
 	sh ./download_data.sh
 	```
 
-(OPTIONAL). Download Enformer: Only necessary if running code from a machine without internet access. Otherwise, Enformer can be loaded from tfhub.
+(OPTIONAL). Download Enformer: Only necessary if running code from a machine without internet access. Otherwise, Enformer can be loaded from tfhub. Code in this repo loads Enformer from tfhub, so downloading the model is optional. If downloading Enformer is desired, the path to Enformer must be updated in all scripts that call Enformer.
 * Use either link:
 	* https://tfhub.dev/deepmind/enformer/1
 	* https://github.com/deepmind/deepmind-research/tree/master/enformer
@@ -132,7 +132,7 @@ sh $top_level_dir/EDA/Sei_EDA/Example_SGE_run_SeiSigVariantsJob.sh  ${experiment
 
 ```
 
-* Data visualizations of Akita and Enformer predictions for variant with extreme effects, and code to find variants with extreme predicted effects in all models, can be found in ./EDA/PCGC_EDA.ipynb
+# Data visualizations of Akita and Enformer predictions for variant with extreme effects, and code to find variants with extreme predicted effects in all models, can be found in ./EDA/PCGC_EDA.ipynb
 
 
 ## Data Availability:
