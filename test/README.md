@@ -1,0 +1,1 @@
+Tests in this folder include unit tests written for my computing environment and will fail for other users, partly because paths are hard coded and partly because the tests are written for multiple projects with different data. Ignore this directory.
