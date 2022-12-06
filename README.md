@@ -144,4 +144,4 @@ sh $top_level_dir/EDA/Sei_EDA/Example_SGE_run_SeiSigVariantsJob.sh  ${experiment
 	* Predictions for Akita, Sei, and Enformer can be found here: https://ucsf.box.com/s/uopnbwg6rpul9ba0s1wu15zq4u4cpmmg
 * List of 456 DNVs whose predicted effects were significant in Akita, Sei, and Enformer can be found here: ./EDA/DNVs_Sig_in_ALL_models.csv
 	* This csv contains chromosome, position (hg38), reference allele, and alternate allele for these 456 DNVs, as well as Akita and Sei predictions for each. This file also contains summary Enformer results (e.g., number of CAGE tracks significantly altered), rather than each individual predicted effect, because of storage considerations. Each variant appears in multiple rows to account for different scoring methods from each model. 
-* Bootstrap results and visualization of those results can be found in ./EDA/Enrichment_analysis.ipynb
+* Bootstrap results and visualization, as well as a list of genes within 100kb of prioritized CHD DNVs can be found in ./EDA/Enrichment_analysis.ipynb
